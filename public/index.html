@@ -1,332 +1,1684 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Juniors Automotive & Tire</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root, :root[data-theme="light"]{
-  --bg:#ffffff;--surface:#f8fafc;--surface-hover:#f1f5f9;--ink:#0f172a;--ink-subtle:#334155;--steel:#64748b;--line:#e2e8f0;
-  --red:#d32f2f;--red-hover:#b91c1c;--dark:#090b10;--card:#ffffff;--card-border:#e2e8f0;
-  --shadow-sm:0 1px 3px rgba(15,23,42,0.06),0 1px 2px rgba(15,23,42,0.04);
-  --shadow-md:0 4px 6px -1px rgba(15,23,42,0.08),0 2px 4px -2px rgba(15,23,42,0.05);
-  --pt:env(safe-area-inset-top,0px);--pb:env(safe-area-inset-bottom,0px);box-sizing:border-box;padding-top:var(--pt);padding-bottom:var(--pb);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#111317;--surface:#181b20;--surface-hover:#22262d;--ink:#f1f5f9;--ink-subtle:#cbd5e1;--steel:#94a3b8;--line:#282d35;
-    --red:#ef4444;--red-hover:#dc2626;--dark:#090a0d;--card:#181b20;--card-border:#282d35;
-    --shadow-sm:0 1px 3px rgba(0,0,0,0.5);--shadow-md:0 4px 8px rgba(0,0,0,0.6);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#111317;--surface:#181b20;--surface-hover:#22262d;--ink:#f1f5f9;--ink-subtle:#cbd5e1;--steel:#94a3b8;--line:#282d35;
-  --red:#ef4444;--red-hover:#dc2626;--dark:#090a0d;--card:#181b20;--card-border:#282d35;
-  --shadow-sm:0 1px 3px rgba(0,0,0,0.5);--shadow-md:0 4px 8px rgba(0,0,0,0.6);
-}
-*,*::before,*::after{box-sizing:inherit}html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 Barlow,system-ui,sans-serif;overflow-x:hidden;transition:background .25s,color .25s}
-h1,h2,h3{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;line-height:.92;margin:0;letter-spacing:-.01em;color:var(--ink)}
-h2{font-size:clamp(44px,8vw,112px)}a{color:inherit}
-:focus-visible{outline:2px solid var(--red);outline-offset:3px}
-.wrap{padding:0 clamp(20px,5vw,72px)}section{padding:clamp(72px,11vw,150px) 0;border-top:1px solid var(--line)}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;font:600 16px Barlow,sans-serif;text-decoration:none;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;border-radius:4px;transition:all .2s cubic-bezier(.2,.7,.1,1);min-height:48px}
-.btn.fill{background:var(--red);border-color:var(--red);color:#fff}.btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}.btn.fill:hover{background:var(--red-hover);border-color:var(--red-hover);color:#fff;transform:translateY(-1px);box-shadow:0 4px 12px rgba(211,47,47,0.25)}
-/* loader */
-#loader{position:fixed;inset:0;z-index:99;background:var(--dark);color:#eeece7;display:grid;place-items:center;transition:clip-path .9s cubic-bezier(.7,0,.2,1);clip-path:inset(0 0 0 0)}
-#loader.done{clip-path:inset(0 0 100% 0)}
-#loader .in{text-align:center;width:min(86vw,420px)}#lt{width:min(72vw,340px);margin:0 auto 28px}#lt svg{width:100%;height:auto;display:block}
-.mark{font:800 26px "Barlow Condensed",sans-serif;letter-spacing:.04em}
-.bar{height:2px;background:#ffffff26;margin-top:18px}.bar i{display:block;height:100%;width:0;background:var(--red)}
-/* nav */
-header{position:sticky;top:var(--pt);z-index:20;margin-bottom:-72px;transition:transform .4s cubic-bezier(.2,.7,.1,1),background .3s,box-shadow .3s,backdrop-filter .3s}
-header.sc,header:has(.links.open){background:rgba(255,255,255,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
-:root[data-theme="dark"] header.sc,:root[data-theme="dark"] header:has(.links.open){background:rgba(17,19,23,0.88)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) header.sc,:root:not([data-theme="light"]) header:has(.links.open){background:rgba(17,19,23,0.88)}}
-header.hide{transform:translateY(-110%)}
-nav{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}.logo svg{width:34px;height:34px;transition:transform .6s cubic-bezier(.2,.7,.1,1)}.logo:hover svg{transform:rotate(120deg)}.logo span{display:grid;line-height:1}.logo b{font:800 25px "Barlow Condensed",sans-serif;letter-spacing:.06em}.logo small{font:500 12px Barlow,sans-serif;color:var(--steel);margin-top:3px}
-.links{display:flex;gap:34px;align-items:center}.links a{text-decoration:none;font-weight:500}.links a:not(.btn){padding:6px 0;background:linear-gradient(var(--red),var(--red)) 0 100%/0 2px no-repeat;transition:background-size .3s cubic-bezier(.2,.7,.1,1)}.links a:not(.btn):hover,.links a[aria-current]:not(.btn){background-size:100% 2px}
-.links .btn.fill{background:var(--ink);border-color:var(--ink);color:var(--bg);padding:10px 22px;min-height:44px}
-.links .btn.fill:hover{background:var(--red);border-color:var(--red);color:#fff;transform:none;box-shadow:none}
-.theme-toggle{background:transparent;border:1.5px solid var(--line);color:var(--ink);border-radius:50%;width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;padding:0;flex-shrink:0}
-.theme-toggle:hover{border-color:var(--ink);background:var(--surface-hover);transform:scale(1.05)}
-.theme-toggle svg{width:20px;height:20px;stroke:currentColor}
-:root .theme-toggle .sun{display:none}:root .theme-toggle .moon{display:block}
-:root[data-theme="dark"] .theme-toggle .sun{display:block}:root[data-theme="dark"] .theme-toggle .moon{display:none}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .theme-toggle .sun{display:block}:root:not([data-theme="light"]) .theme-toggle .moon{display:none}}
-#burger{display:none;background:none;border:0;width:48px;height:48px;cursor:pointer;color:var(--ink)}
-#burger span{display:block;height:2px;background:currentColor;margin:6px 10px;transition:transform .3s cubic-bezier(.2,.7,.1,1)}#burger[aria-expanded=true] span:first-child{transform:translateY(4px) rotate(45deg)}#burger[aria-expanded=true] span:last-child{transform:translateY(-4px) rotate(-45deg)}
-@media(max-width:860px){#burger{display:block}.links{position:fixed;inset:calc(72px + var(--pt)) 0 0 0;background:var(--bg);flex-direction:column;align-items:flex-start;gap:0;padding:20px;transform:translateX(100%);transition:transform .35s cubic-bezier(.7,0,.2,1);visibility:hidden}
-.links.open{transform:none;visibility:visible}.links a:not(.btn){font:800 44px "Barlow Condensed";padding:10px 0;width:100%;border-bottom:1px solid var(--line)}.links .btn{margin-top:24px;width:100%;text-align:center}}
-/* hero */
-#pin{height:260svh;position:relative}.hero{border:0;padding:72px 0 0;position:sticky;top:0;overflow:hidden;height:100svh;display:grid;align-items:center}#smoke{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
-.hero h1{font-size:clamp(64px,13vw,210px);position:relative;z-index:2;max-width:9ch}
-.hero h1 span{display:block;overflow:hidden}.hero h1 span i{display:block;font-style:normal;transform:translateY(105%);transition:transform .9s cubic-bezier(.2,.7,.1,1)}
-.go .hero h1 i{transform:none}.hero h1 span:nth-child(2) i{transition-delay:.1s}.hero h1 span:nth-child(3) i{transition-delay:.2s}
-.hero p{max-width:34ch;font-size:19px;position:relative;z-index:2;margin:28px 0;color:var(--ink-subtle)}.hero .cta{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:2}
-.hero .big{position:absolute;right:6vw;top:50%;transform:translateY(-46%);z-index:1}
-.hero .big img{height:min(84svh,780px);width:min(84svh,780px);max-width:92vw;max-height:92vw;display:block;will-change:transform;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.18))}
-@media(max-width:700px){.hero{align-items:end;padding-bottom:28px}.hero .big{right:calc(min(40svh,88vw)/-2);margin-right:0;top:calc(72px + 1svh);transform:none}.hero .big img{height:min(40svh,88vw);width:min(40svh,88vw)}.hero h1{font-size:min(16vw,10svh)}.hero p{font-size:17px;margin:16px 0 20px;max-width:30ch}.hero .cta{flex-wrap:nowrap}.hero .cta .btn{flex:1;padding:14px 10px;text-align:center;font-size:15px}}
-/* showroom */
-.show{background:radial-gradient(circle at 50% 25%,#1e293b 0%,#0c0e14 100%);color:#f8fafc;border:0;overflow:hidden;position:relative}
-.show::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent)}
-.show h2{color:#f8fafc}.show .head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}.show .head p{color:#94a3b8}
-.stage{position:relative;margin-top:60px;padding-top:70px;touch-action:pan-y;cursor:grab;user-select:none}.stage:active{cursor:grabbing}
-.track{display:flex;gap:clamp(10px,3vw,50px);transition:transform .7s cubic-bezier(.2,.8,.2,1);will-change:transform}
-.item{flex:0 0 clamp(170px,22vw,300px);position:relative;transition:transform .7s cubic-bezier(.3,1.35,.4,1),opacity .5s,filter .5s;transform:scale(.8);opacity:.5;filter:brightness(.7);cursor:pointer;background:none;border:0;padding:0}
-.item.on{transform:translateY(-58px) scale(1.12) rotate(-3deg);opacity:1;filter:none}.item svg{width:100%;display:block;pointer-events:none}
-.item::after{content:"";position:absolute;left:12%;right:12%;bottom:-14px;height:18px;background:radial-gradient(rgba(0,0,0,0.8),transparent 70%);transition:transform .7s,opacity .7s}.item.on::after{transform:translateY(58px) scaleX(.85);opacity:.7}
-.info{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,5vw,80px);margin-top:48px;align-items:start}
-.info .t{animation:rise .6s cubic-bezier(.2,.8,.2,1)}@keyframes rise{from{opacity:0;transform:translateY(22px)}}
-.info h3{font-size:clamp(44px,6vw,84px);color:#f8fafc}.cat{color:var(--red);font-weight:600;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em}
-.specs{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0 24px}.specs dt{color:#94a3b8;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1)}.specs dd{margin:0;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1);color:#f8fafc}
-.ctl{display:flex;gap:10px;align-items:center;margin-top:28px;flex-wrap:wrap}.ctl .btn{color:#f8fafc;border-color:rgba(255,255,255,0.35);border-radius:4px}.ctl .btn:hover{background:#f8fafc;color:#0f172a;border-color:#f8fafc}.ctl .btn.fill{color:#fff;border-color:var(--red);background:var(--red)}.ctl .btn.fill:hover{background:var(--red-hover);border-color:var(--red-hover)}
-.arrow{width:48px;height:48px;padding:0;font-size:22px;line-height:1}.cnt{margin-left:auto;color:#94a3b8;font-weight:500}
-@media(max-width:800px){.info{grid-template-columns:1fr}.item.on{transform:translateY(-40px) scale(1.08) rotate(-3deg)}}
-/* categories */
-.cats a{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:clamp(14px,2vw,26px) 0;border-bottom:1px solid var(--line);text-decoration:none;font:800 clamp(48px,10vw,150px)/.95 "Barlow Condensed";transition:padding .3s,color .3s;color:var(--ink)}
-.cats a small{font:500 16px Barlow;color:var(--steel);max-width:26ch;text-align:right}.cats a:hover{color:var(--red);padding-left:clamp(10px,3vw,40px)}
-@media(max-width:700px){.cats a small{display:none}}
-/* services */
-.svc{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(30px,6vw,100px)}.svc ul{list-style:none;margin:0;padding:0}
-.svc details{border-bottom:1px solid var(--line);padding:18px 0;transition:background .2s}.svc summary{font:800 clamp(30px,4vw,52px)/1 "Barlow Condensed";cursor:pointer;list-style:none;display:flex;justify-content:space-between;color:var(--ink);transition:color .2s}
-.svc summary:hover{color:var(--red)}.svc summary::after{content:"+";color:var(--red);font-weight:400}.svc details[open] summary::after{content:"\2212"}.svc details p{max-width:50ch;color:var(--steel);margin:12px 0 0;line-height:1.6}
-.note{color:var(--steel);font-size:15px;margin-top:20px}@media(max-width:800px){.svc{grid-template-columns:1fr}}
-/* finder */
-.finder{background:var(--surface);color:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.finder p{color:var(--steel);max-width:44ch}
-.finder form{display:grid;grid-template-columns:repeat(4,1fr) auto;gap:14px;margin-top:48px;align-items:end}
-label{display:grid;gap:6px;font-weight:500;font-size:15px;color:var(--ink)}
-select,input{height:52px;padding:0 14px;font:inherit;background:var(--card);color:var(--ink);border:1.5px solid var(--line);border-radius:4px;box-shadow:var(--shadow-sm);transition:border-color .2s,box-shadow .2s}
-select:focus,input:focus{border-color:var(--red);outline:none;box-shadow:0 0 0 3px rgba(211,47,47,0.12)}
-select:disabled{opacity:.5;cursor:not-allowed}select[aria-invalid=true]{border-color:var(--red)}
-.finder .btn.fill{height:52px;padding-top:0;padding-bottom:0}.err{color:var(--red);min-height:24px;margin-top:12px;font-weight:500}
-#res{margin-top:20px;display:grid;gap:0}.row{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:center;flex-wrap:wrap}
-.row b{font:800 34px "Barlow Condensed";color:var(--ink)}.row span{color:var(--steel)}
-.row .btn{color:var(--ink);border-color:var(--ink);padding:9px 18px;min-height:44px}.row .btn:hover{background:var(--ink);color:var(--bg)}
-@media(max-width:900px){.finder form{grid-template-columns:1fr 1fr}.finder .btn.fill{grid-column:1/-1}}
-/* why/contact/footer */
-.why{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px)}.why p{font-size:clamp(20px,2vw,26px);line-height:1.4;margin:0 0 22px;max-width:30ch;color:var(--ink-subtle)}
-@media(max-width:800px){.why{grid-template-columns:1fr}}
-.contact dl{display:grid;grid-template-columns:140px 1fr;margin:48px 0 0;max-width:720px}.contact dt{color:var(--steel);padding:16px 0;border-top:1px solid var(--line)}.contact dd{margin:0;padding:16px 0;border-top:1px solid var(--line);font-weight:500;color:var(--ink)}
-.ph{background:rgba(211,47,47,0.08);color:var(--red);padding:3px 10px;border-radius:4px;border:1px dashed rgba(211,47,47,0.35);font-size:0.95em;font-weight:500}
-footer{background:#090b10;color:#f1f5f9;padding:clamp(60px,8vw,110px) 0 36px;overflow:hidden;border-top:1px solid rgba(255,255,255,0.06)}.foot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
-footer .word{font:800 clamp(64px,17vw,270px)/.8 "Barlow Condensed";margin-top:70px;white-space:nowrap;color:#171b24;letter-spacing:-.02em}
-footer h4{margin:0 0 12px;font:600 16px Barlow;color:#94a3b8}footer a,footer button.l{display:block;text-decoration:none;padding:5px 0;color:#cbd5e1;background:none;border:0;font:inherit;cursor:pointer;text-align:left;transition:color .2s}
-footer a:hover,footer button.l:hover{color:var(--red)}
-@media(max-width:800px){.foot{grid-template-columns:1fr 1fr}.foot>:first-child{grid-column:1/-1}}
-dialog{border:1.5px solid var(--line);background:var(--card);color:var(--ink);max-width:440px;padding:28px;border-radius:8px;box-shadow:var(--shadow-md)}dialog::backdrop{background:rgba(0,0,0,0.6);backdrop-filter:blur(4px)}
-.qf{max-width:720px}.qf input,.qf textarea,#admin input,#admin textarea,#admin select{width:100%;padding:14px;font:inherit;background:var(--card);color:var(--ink);border:1.5px solid var(--line);border-radius:4px;min-height:48px;box-shadow:var(--shadow-sm);transition:border-color .2s,box-shadow .2s}
-.qf input:focus,.qf textarea:focus,#admin input:focus,#admin textarea:focus,#admin select:focus{border-color:var(--red);outline:none;box-shadow:0 0 0 3px rgba(211,47,47,0.12)}
-#admin{position:fixed;inset:0;z-index:60;background:var(--bg);color:var(--ink);overflow:auto;padding:calc(20px + var(--pt)) clamp(16px,4vw,56px) 60px}#admin[hidden]{display:none}#admin label.up{display:inline-block;cursor:pointer;text-align:center}
-.ah{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:16px}.tabs{display:flex;gap:8px;flex-wrap:wrap}
-.pr{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--line)}.pr .th{background:#0f172a;border-radius:4px;aspect-ratio:1;display:grid;place-items:center;overflow:hidden;align-self:start}.pr .th svg,.pr .th img{width:100%;height:100%;object-fit:contain}
-.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}.ctl2{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.ctl2 .btn{padding:10px 18px;min-height:44px}.row2{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:start}
-@media(max-width:700px){.pr{grid-template-columns:1fr}.pr .th{width:110px}}
-html{-webkit-text-size-adjust:100%}@media(max-width:700px){.cats a{font-size:clamp(44px,13vw,80px)}.contact dl{grid-template-columns:96px 1fr}.stage{margin-top:36px}.ctl .cnt{margin-left:0}.show .head p{display:none}}@media(max-width:520px){.finder form{grid-template-columns:1fr}.row b{font-size:28px}}@media(min-width:701px) and (max-width:1100px){.hero h1{font-size:12vw}.hero .big{right:3vw}.hero .big img{height:min(54svh,46vw);width:min(54svh,46vw)}}
-@media(prefers-reduced-motion:reduce){#pin{height:auto}.hero{position:relative;height:auto;min-height:100svh}#smoke{display:none}*{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.hero h1 i{transform:none}}
-</style></head>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Juniors Automotive & Tire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root,
+    :root[data-theme="light"] {
+      --bg: #ffffff;
+      --surface: #f8fafc;
+      --surface-hover: #f1f5f9;
+      --ink: #0f172a;
+      --ink-subtle: #334155;
+      --steel: #64748b;
+      --line: #e2e8f0;
+      --red: #d32f2f;
+      --red-hover: #b91c1c;
+      --dark: #090b10;
+      --card: #ffffff;
+      --card-border: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+      --pt: env(safe-area-inset-top, 0px);
+      --pb: env(safe-area-inset-bottom, 0px);
+      box-sizing: border-box;
+      padding-top: var(--pt);
+      padding-bottom: var(--pb);
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #111317;
+        --surface: #181b20;
+        --surface-hover: #22262d;
+        --ink: #f1f5f9;
+        --ink-subtle: #cbd5e1;
+        --steel: #94a3b8;
+        --line: #282d35;
+        --red: #ef4444;
+        --red-hover: #dc2626;
+        --dark: #090a0d;
+        --card: #181b20;
+        --card-border: #282d35;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+        --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #111317;
+      --surface: #181b20;
+      --surface-hover: #22262d;
+      --ink: #f1f5f9;
+      --ink-subtle: #cbd5e1;
+      --steel: #94a3b8;
+      --line: #282d35;
+      --red: #ef4444;
+      --red-hover: #dc2626;
+      --dark: #090a0d;
+      --card: #181b20;
+      --card-border: #282d35;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 70px
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 400 17px/1.55 Barlow, system-ui, sans-serif;
+      overflow-x: hidden;
+      transition: background .25s, color .25s
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+      font-weight: 800;
+      line-height: .92;
+      margin: 0;
+      letter-spacing: -.01em;
+      color: var(--ink)
+    }
+
+    h2 {
+      font-size: clamp(44px, 8vw, 112px)
+    }
+
+    a {
+      color: inherit
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 3px
+    }
+
+    .wrap {
+      padding: 0 clamp(20px, 5vw, 72px)
+    }
+
+    section {
+      padding: clamp(72px, 11vw, 150px) 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      font: 600 16px Barlow, sans-serif;
+      text-decoration: none;
+      border: 1.5px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all .2s cubic-bezier(.2, .7, .1, 1);
+      min-height: 48px
+    }
+
+    .btn.fill {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff
+    }
+
+    .btn:hover {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink)
+    }
+
+    .btn.fill:hover {
+      background: var(--red-hover);
+      border-color: var(--red-hover);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25)
+    }
+
+    /* loader */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: var(--dark);
+      color: #eeece7;
+      display: grid;
+      place-items: center;
+      transition: clip-path .9s cubic-bezier(.7, 0, .2, 1);
+      clip-path: inset(0 0 0 0)
+    }
+
+    #loader.done {
+      clip-path: inset(0 0 100% 0)
+    }
+
+    #loader .in {
+      text-align: center;
+      width: min(86vw, 420px)
+    }
+
+    #lt {
+      width: min(72vw, 340px);
+      margin: 0 auto 28px
+    }
+
+    #lt svg {
+      width: 100%;
+      height: auto;
+      display: block
+    }
+
+    .mark {
+      font: 800 26px "Barlow Condensed", sans-serif;
+      letter-spacing: .04em
+    }
+
+    .bar {
+      height: 2px;
+      background: #ffffff26;
+      margin-top: 18px
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--red)
+    }
+
+    /* nav */
+    header {
+      position: sticky;
+      top: var(--pt);
+      z-index: 20;
+      margin-bottom: -72px;
+      transition: transform .4s cubic-bezier(.2, .7, .1, 1), background .3s, box-shadow .3s, backdrop-filter .3s
+    }
+
+    header.sc,
+    header:has(.links.open) {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 var(--line)
+    }
+
+    :root[data-theme="dark"] header.sc,
+    :root[data-theme="dark"] header:has(.links.open) {
+      background: rgba(17, 19, 23, 0.88)
+    }
+
+    @media (prefers-color-scheme:dark) {
+
+      :root:not([data-theme="light"]) header.sc,
+      :root:not([data-theme="light"]) header:has(.links.open) {
+        background: rgba(17, 19, 23, 0.88)
+      }
+    }
+
+    header.hide {
+      transform: translateY(-110%)
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink)
+    }
+
+    .logo svg {
+      width: 34px;
+      height: 34px;
+      transition: transform .6s cubic-bezier(.2, .7, .1, 1)
+    }
+
+    .logo:hover svg {
+      transform: rotate(120deg)
+    }
+
+    .logo span {
+      display: grid;
+      line-height: 1
+    }
+
+    .logo b {
+      font: 800 25px "Barlow Condensed", sans-serif;
+      letter-spacing: .06em
+    }
+
+    .logo small {
+      font: 500 12px Barlow, sans-serif;
+      color: var(--steel);
+      margin-top: 3px
+    }
+
+    .links {
+      display: flex;
+      gap: 34px;
+      align-items: center
+    }
+
+    .links a {
+      text-decoration: none;
+      font-weight: 500
+    }
+
+    .links a:not(.btn) {
+      padding: 6px 0;
+      background: linear-gradient(var(--red), var(--red)) 0 100%/0 2px no-repeat;
+      transition: background-size .3s cubic-bezier(.2, .7, .1, 1)
+    }
+
+    .links a:not(.btn):hover,
+    .links a[aria-current]:not(.btn) {
+      background-size: 100% 2px
+    }
+
+    .links .btn.fill {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg);
+      padding: 10px 22px;
+      min-height: 44px
+    }
+
+    .links .btn.fill:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+      transform: none;
+      box-shadow: none
+    }
+
+    .theme-toggle {
+      background: transparent;
+      border: 1.5px solid var(--line);
+      color: var(--ink);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .2s;
+      padding: 0;
+      flex-shrink: 0
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--ink);
+      background: var(--surface-hover);
+      transform: scale(1.05)
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor
+    }
+
+    :root .theme-toggle .sun {
+      display: none
+    }
+
+    :root .theme-toggle .moon {
+      display: block
+    }
+
+    :root[data-theme="dark"] .theme-toggle .sun {
+      display: block
+    }
+
+    :root[data-theme="dark"] .theme-toggle .moon {
+      display: none
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) .theme-toggle .sun {
+        display: block
+      }
+
+      :root:not([data-theme="light"]) .theme-toggle .moon {
+        display: none
+      }
+    }
+
+    #burger {
+      display: none;
+      background: none;
+      border: 0;
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+      color: var(--ink)
+    }
+
+    #burger span {
+      display: block;
+      height: 2px;
+      background: currentColor;
+      margin: 6px 10px;
+      transition: transform .3s cubic-bezier(.2, .7, .1, 1)
+    }
+
+    #burger[aria-expanded=true] span:first-child {
+      transform: translateY(4px) rotate(45deg)
+    }
+
+    #burger[aria-expanded=true] span:last-child {
+      transform: translateY(-4px) rotate(-45deg)
+    }
+
+    @media(max-width:860px) {
+      #burger {
+        display: block
+      }
+
+      .links {
+        position: fixed;
+        inset: calc(72px + var(--pt)) 0 0 0;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 20px;
+        transform: translateX(100%);
+        transition: transform .35s cubic-bezier(.7, 0, .2, 1);
+        visibility: hidden
+      }
+
+      .links.open {
+        transform: none;
+        visibility: visible
+      }
+
+      .links a:not(.btn) {
+        font: 800 44px "Barlow Condensed";
+        padding: 10px 0;
+        width: 100%;
+        border-bottom: 1px solid var(--line)
+      }
+
+      .links .btn {
+        margin-top: 24px;
+        width: 100%;
+        text-align: center
+      }
+    }
+
+    /* hero */
+    #pin {
+      height: 260svh;
+      position: relative
+    }
+
+    .hero {
+      border: 0;
+      padding: 72px 0 0;
+      position: sticky;
+      top: 0;
+      overflow: hidden;
+      height: 100svh;
+      display: grid;
+      align-items: center
+    }
+
+    #smoke {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none
+    }
+
+    .hero h1 {
+      font-size: clamp(64px, 13vw, 210px);
+      position: relative;
+      z-index: 2;
+      max-width: 9ch
+    }
+
+    .hero h1 span {
+      display: block;
+      overflow: hidden
+    }
+
+    .hero h1 span i {
+      display: block;
+      font-style: normal;
+      transform: translateY(105%);
+      transition: transform .9s cubic-bezier(.2, .7, .1, 1)
+    }
+
+    .go .hero h1 i {
+      transform: none
+    }
+
+    .hero h1 span:nth-child(2) i {
+      transition-delay: .1s
+    }
+
+    .hero h1 span:nth-child(3) i {
+      transition-delay: .2s
+    }
+
+    .hero p {
+      max-width: 34ch;
+      font-size: 19px;
+      position: relative;
+      z-index: 2;
+      margin: 28px 0;
+      color: var(--ink-subtle)
+    }
+
+    .hero .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2
+    }
+
+    .hero .big {
+      position: absolute;
+      right: 6vw;
+      top: 50%;
+      transform: translateY(-46%);
+      z-index: 1
+    }
+
+    .hero .big img {
+      height: min(84svh, 780px);
+      width: min(84svh, 780px);
+      max-width: 92vw;
+      max-height: 92vw;
+      display: block;
+      will-change: transform;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.18))
+    }
+
+    @media(max-width:700px) {
+      .hero {
+        align-items: end;
+        padding-bottom: 28px
+      }
+
+      .hero .big {
+        right: calc(min(40svh, 88vw)/-2);
+        margin-right: 0;
+        top: calc(72px + 1svh);
+        transform: none
+      }
+
+      .hero .big img {
+        height: min(40svh, 88vw);
+        width: min(40svh, 88vw)
+      }
+
+      .hero h1 {
+        font-size: min(16vw, 10svh)
+      }
+
+      .hero p {
+        font-size: 17px;
+        margin: 16px 0 20px;
+        max-width: 30ch
+      }
+
+      .hero .cta {
+        flex-wrap: nowrap
+      }
+
+      .hero .cta .btn {
+        flex: 1;
+        padding: 14px 10px;
+        text-align: center;
+        font-size: 15px
+      }
+    }
+
+    /* showroom */
+    .show {
+      background: radial-gradient(circle at 50% 25%, #1e293b 0%, #0c0e14 100%);
+      color: #f8fafc;
+      border: 0;
+      overflow: hidden;
+      position: relative
+    }
+
+    .show::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent)
+    }
+
+    .show h2 {
+      color: #f8fafc
+    }
+
+    .show .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      flex-wrap: wrap
+    }
+
+    .show .head p {
+      color: #94a3b8
+    }
+
+    .stage {
+      position: relative;
+      margin-top: 60px;
+      padding-top: 70px;
+      touch-action: pan-y;
+      cursor: grab;
+      user-select: none
+    }
+
+    .stage:active {
+      cursor: grabbing
+    }
+
+    .track {
+      display: flex;
+      gap: clamp(10px, 3vw, 50px);
+      transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+      will-change: transform
+    }
+
+    .item {
+      flex: 0 0 clamp(170px, 22vw, 300px);
+      position: relative;
+      transition: transform .7s cubic-bezier(.3, 1.35, .4, 1), opacity .5s, filter .5s;
+      transform: scale(.8);
+      opacity: .5;
+      filter: brightness(.7);
+      cursor: pointer;
+      background: none;
+      border: 0;
+      padding: 0
+    }
+
+    .item.on {
+      transform: translateY(-58px) scale(1.12) rotate(-3deg);
+      opacity: 1;
+      filter: none
+    }
+
+    .item svg {
+      width: 100%;
+      display: block;
+      pointer-events: none
+    }
+
+    .item::after {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      bottom: -14px;
+      height: 18px;
+      background: radial-gradient(rgba(0, 0, 0, 0.8), transparent 70%);
+      transition: transform .7s, opacity .7s
+    }
+
+    .item.on::after {
+      transform: translateY(58px) scaleX(.85);
+      opacity: .7
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(24px, 5vw, 80px);
+      margin-top: 48px;
+      align-items: start
+    }
+
+    .info .t {
+      animation: rise .6s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(22px)
+      }
+    }
+
+    .info h3 {
+      font-size: clamp(44px, 6vw, 84px);
+      color: #f8fafc
+    }
+
+    .cat {
+      color: var(--red);
+      font-weight: 600;
+      margin: 0 0 10px;
+      text-transform: uppercase;
+      letter-spacing: .05em
+    }
+
+    .specs {
+      margin: 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 24px
+    }
+
+    .specs dt {
+      color: #94a3b8;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+    }
+
+    .specs dd {
+      margin: 0;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: #f8fafc
+    }
+
+    .ctl {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 28px;
+      flex-wrap: wrap
+    }
+
+    .ctl .btn {
+      color: #f8fafc;
+      border-color: rgba(255, 255, 255, 0.35);
+      border-radius: 4px
+    }
+
+    .ctl .btn:hover {
+      background: #f8fafc;
+      color: #0f172a;
+      border-color: #f8fafc
+    }
+
+    .ctl .btn.fill {
+      color: #fff;
+      border-color: var(--red);
+      background: var(--red)
+    }
+
+    .ctl .btn.fill:hover {
+      background: var(--red-hover);
+      border-color: var(--red-hover)
+    }
+
+    .arrow {
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      font-size: 22px;
+      line-height: 1
+    }
+
+    .cnt {
+      margin-left: auto;
+      color: #94a3b8;
+      font-weight: 500
+    }
+
+    @media(max-width:800px) {
+      .info {
+        grid-template-columns: 1fr
+      }
+
+      .item.on {
+        transform: translateY(-40px) scale(1.08) rotate(-3deg)
+      }
+    }
+
+    /* categories */
+    .cats a {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 20px;
+      padding: clamp(14px, 2vw, 26px) 0;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      font: 800 clamp(48px, 10vw, 150px)/.95 "Barlow Condensed";
+      transition: padding .3s, color .3s;
+      color: var(--ink)
+    }
+
+    .cats a small {
+      font: 500 16px Barlow;
+      color: var(--steel);
+      max-width: 26ch;
+      text-align: right
+    }
+
+    .cats a:hover {
+      color: var(--red);
+      padding-left: clamp(10px, 3vw, 40px)
+    }
+
+    @media(max-width:700px) {
+      .cats a small {
+        display: none
+      }
+    }
+
+    /* services */
+    .svc {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: clamp(30px, 6vw, 100px)
+    }
+
+    .svc ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    .svc details {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+      transition: background .2s
+    }
+
+    .svc summary {
+      font: 800 clamp(30px, 4vw, 52px)/1 "Barlow Condensed";
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      color: var(--ink);
+      transition: color .2s
+    }
+
+    .svc summary:hover {
+      color: var(--red)
+    }
+
+    .svc summary::after {
+      content: "+";
+      color: var(--red);
+      font-weight: 400
+    }
+
+    .svc details[open] summary::after {
+      content: "\2212"
+    }
+
+    .svc details p {
+      max-width: 50ch;
+      color: var(--steel);
+      margin: 12px 0 0;
+      line-height: 1.6
+    }
+
+    .note {
+      color: var(--steel);
+      font-size: 15px;
+      margin-top: 20px
+    }
+
+    @media(max-width:800px) {
+      .svc {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* finder */
+    .finder {
+      background: var(--surface);
+      color: var(--ink);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line)
+    }
+
+    .finder p {
+      color: var(--steel);
+      max-width: 44ch
+    }
+
+    .finder form {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) auto;
+      gap: 14px;
+      margin-top: 48px;
+      align-items: end
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--ink)
+    }
+
+    select,
+    input {
+      height: 52px;
+      padding: 0 14px;
+      font: inherit;
+      background: var(--card);
+      color: var(--ink);
+      border: 1.5px solid var(--line);
+      border-radius: 4px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color .2s, box-shadow .2s
+    }
+
+    select:focus,
+    input:focus {
+      border-color: var(--red);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.12)
+    }
+
+    select:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+
+    select[aria-invalid=true] {
+      border-color: var(--red)
+    }
+
+    .finder .btn.fill {
+      height: 52px;
+      padding-top: 0;
+      padding-bottom: 0
+    }
+
+    .err {
+      color: var(--red);
+      min-height: 24px;
+      margin-top: 12px;
+      font-weight: 500
+    }
+
+    #res {
+      margin-top: 20px;
+      display: grid;
+      gap: 0
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .row b {
+      font: 800 34px "Barlow Condensed";
+      color: var(--ink)
+    }
+
+    .row span {
+      color: var(--steel)
+    }
+
+    .row .btn {
+      color: var(--ink);
+      border-color: var(--ink);
+      padding: 9px 18px;
+      min-height: 44px
+    }
+
+    .row .btn:hover {
+      background: var(--ink);
+      color: var(--bg)
+    }
+
+    @media(max-width:900px) {
+      .finder form {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .finder .btn.fill {
+        grid-column: 1/-1
+      }
+    }
+
+    /* why/contact/footer */
+    .why {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(30px, 6vw, 100px)
+    }
+
+    .why p {
+      font-size: clamp(20px, 2vw, 26px);
+      line-height: 1.4;
+      margin: 0 0 22px;
+      max-width: 30ch;
+      color: var(--ink-subtle)
+    }
+
+    @media(max-width:800px) {
+      .why {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .contact dl {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      margin: 48px 0 0;
+      max-width: 720px
+    }
+
+    .contact dt {
+      color: var(--steel);
+      padding: 16px 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .contact dd {
+      margin: 0;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+      font-weight: 500;
+      color: var(--ink)
+    }
+
+    .ph {
+      background: rgba(211, 47, 47, 0.08);
+      color: var(--red);
+      padding: 3px 10px;
+      border-radius: 4px;
+      border: 1px dashed rgba(211, 47, 47, 0.35);
+      font-size: 0.95em;
+      font-weight: 500
+    }
+
+    footer {
+      background: #090b10;
+      color: #f1f5f9;
+      padding: clamp(60px, 8vw, 110px) 0 36px;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.06)
+    }
+
+    .foot {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px
+    }
+
+    footer .word {
+      font: 800 clamp(64px, 17vw, 270px)/.8 "Barlow Condensed";
+      margin-top: 70px;
+      white-space: nowrap;
+      color: #171b24;
+      letter-spacing: -.02em
+    }
+
+    footer h4 {
+      margin: 0 0 12px;
+      font: 600 16px Barlow;
+      color: #94a3b8
+    }
+
+    footer a,
+    footer button.l {
+      display: block;
+      text-decoration: none;
+      padding: 5px 0;
+      color: #cbd5e1;
+      background: none;
+      border: 0;
+      font: inherit;
+      cursor: pointer;
+      text-align: left;
+      transition: color .2s
+    }
+
+    footer a:hover,
+    footer button.l:hover {
+      color: var(--red)
+    }
+
+    @media(max-width:800px) {
+      .foot {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .foot>:first-child {
+        grid-column: 1/-1
+      }
+    }
+
+    dialog {
+      border: 1.5px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      max-width: 440px;
+      padding: 28px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-md)
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px)
+    }
+
+    .qf {
+      max-width: 720px
+    }
+
+    .qf input,
+    .qf textarea,
+    #admin input,
+    #admin textarea,
+    #admin select {
+      width: 100%;
+      padding: 14px;
+      font: inherit;
+      background: var(--card);
+      color: var(--ink);
+      border: 1.5px solid var(--line);
+      border-radius: 4px;
+      min-height: 48px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color .2s, box-shadow .2s
+    }
+
+    .qf input:focus,
+    .qf textarea:focus,
+    #admin input:focus,
+    #admin textarea:focus,
+    #admin select:focus {
+      border-color: var(--red);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.12)
+    }
+
+    #admin {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: var(--bg);
+      color: var(--ink);
+      overflow: auto;
+      padding: calc(20px + var(--pt)) clamp(16px, 4vw, 56px) 60px
+    }
+
+    #admin[hidden] {
+      display: none
+    }
+
+    #admin label.up {
+      display: inline-block;
+      cursor: pointer;
+      text-align: center
+    }
+
+    .ah {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .pr {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .pr .th {
+      background: #0f172a;
+      border-radius: 4px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      align-self: start
+    }
+
+    .pr .th svg,
+    .pr .th img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain
+    }
+
+    .fg {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px
+    }
+
+    .ctl2 {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px
+    }
+
+    .ctl2 .btn {
+      padding: 10px 18px;
+      min-height: 44px
+    }
+
+    .row2 {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start
+    }
+
+    @media(max-width:700px) {
+      .pr {
+        grid-template-columns: 1fr
+      }
+
+      .pr .th {
+        width: 110px
+      }
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%
+    }
+
+    @media(max-width:700px) {
+      .cats a {
+        font-size: clamp(44px, 13vw, 80px)
+      }
+
+      .contact dl {
+        grid-template-columns: 96px 1fr
+      }
+
+      .stage {
+        margin-top: 36px
+      }
+
+      .ctl .cnt {
+        margin-left: 0
+      }
+
+      .show .head p {
+        display: none
+      }
+    }
+
+    @media(max-width:520px) {
+      .finder form {
+        grid-template-columns: 1fr
+      }
+
+      .row b {
+        font-size: 28px
+      }
+    }
+
+    @media(min-width:701px) and (max-width:1100px) {
+      .hero h1 {
+        font-size: 12vw
+      }
+
+      .hero .big {
+        right: 3vw
+      }
+
+      .hero .big img {
+        height: min(54svh, 46vw);
+        width: min(54svh, 46vw)
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      #pin {
+        height: auto
+      }
+
+      .hero {
+        position: relative;
+        height: auto;
+        min-height: 100svh
+      }
+
+      #smoke {
+        display: none
+      }
+
+      * {
+        animation: none !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important
+      }
+
+      .hero h1 i {
+        transform: none
+      }
+    }
+  </style>
+</head>
+
 <body>
-<div id="loader" role="status" aria-label="Loading"><div class="in"><div id="lt"></div><div class="mark">JUNIORS AUTOMOTIVE &amp; TIRE</div><div class="bar"><i id="lb"></i></div></div></div>
-<header><div class="wrap"><nav aria-label="Main">
-<a class="logo" href="#top" aria-label="Juniors Automotive and Tire, home"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="2.2 1.2"/><circle cx="16" cy="16" r="5" fill="var(--red)"/></svg><span><b>JUNIORS</b><small>Automotive &amp; Tire</small></span></a>
-<div class="links" id="lk"><a href="#top">Home</a><a href="#showroom">Shop Tires</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a class="btn fill" href="#finder">Find Tires</a></div>
-<div style="display:flex;align-items:center;gap:10px">
-<button id="theme-btn" class="theme-toggle" aria-label="Toggle theme" title="Toggle light or dark theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
-<button id="burger" aria-label="Menu" aria-expanded="false" aria-controls="lk"><span></span><span></span></button>
-</div>
-</nav></div></header>
-<main id="top">
-<div id="pin"><section class="hero"><div class="big" id="hb" aria-hidden="true"><img id="hi" src="/img/hero.webp" alt="" draggable="false"></div><canvas id="smoke" aria-hidden="true"></canvas><div class="wrap">
-<h1><span><i>The right</i></span><span><i>tire, fitted</i></span><span><i>properly.</i></span></h1>
-<p>Tires, installation and everyday service for the car or truck you rely on.</p>
-<div class="cta"><a class="btn fill" href="#showroom">Shop Tires</a><a class="btn" href="#services">Explore Services</a></div></div></section></div>
+  <div id="loader" role="status" aria-label="Loading">
+    <div class="in">
+      <div id="lt"></div>
+      <div class="mark">JUNIORS AUTOMOTIVE &amp; TIRE</div>
+      <div class="bar"><i id="lb"></i></div>
+    </div>
+  </div>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Main">
+        <a class="logo" href="#top" aria-label="Juniors Automotive and Tire, home"><svg viewBox="0 0 32 32"
+            aria-hidden="true">
+            <circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="5"
+              stroke-dasharray="2.2 1.2" />
+            <circle cx="16" cy="16" r="5" fill="var(--red)" />
+          </svg><span><b>JUNIORS</b><small>Automotive &amp; Tire</small></span></a>
+        <div class="links" id="lk"><a href="#top">Home</a><a href="#showroom">Shop Tires</a><a
+            href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a class="btn fill"
+            href="#finder">Find Tires</a></div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <button id="theme-btn" class="theme-toggle" aria-label="Toggle theme" title="Toggle light or dark theme"><svg
+              class="sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg></button>
+          <button id="burger" aria-label="Menu" aria-expanded="false"
+            aria-controls="lk"><span></span><span></span></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main id="top">
+    <div id="pin">
+      <section class="hero">
+        <div class="big" id="hb" aria-hidden="true"><img id="hi" src="/img/hero.webp" alt="" draggable="false"></div>
+        <canvas id="smoke" aria-hidden="true"></canvas>
+        <div class="wrap">
+          <h1><span><i>The right</i></span><span><i>tire, fitted</i></span><span><i>properly.</i></span></h1>
+          <p>Tires, installation and everyday service for the car or truck you rely on.</p>
+          <div class="cta"><a class="btn fill" href="#showroom">Shop Tires</a><a class="btn" href="#services">Explore
+              Services</a></div>
+        </div>
+      </section>
+    </div>
 
-<section class="show" id="showroom" aria-roledescription="carousel" aria-label="Tire showroom"><div class="wrap">
-<div class="head"><h2>The showroom</h2><p style="color:#9aa0a6;max-width:32ch;margin:0">Drag, swipe or use the arrow keys. Sample products shown until live inventory is connected.</p></div>
-<div class="stage" id="stage" tabindex="0" aria-label="Use left and right arrow keys to change tire"><div class="track" id="track"></div></div>
-<div class="info"><div class="t" id="i1"></div><div class="t" id="i2"></div></div>
-</div></section>
+    <section class="show" id="showroom" aria-roledescription="carousel" aria-label="Tire showroom">
+      <div class="wrap">
+        <div class="head">
+          <h2>The showroom</h2>
+          <p style="color:#9aa0a6;max-width:32ch;margin:0">Drag, swipe or use the arrow keys. Sample products shown
+            until live inventory is connected.</p>
+        </div>
+        <div class="stage" id="stage" tabindex="0" aria-label="Use left and right arrow keys to change tire">
+          <div class="track" id="track"></div>
+        </div>
+        <div class="info">
+          <div class="t" id="i1"></div>
+          <div class="t" id="i2"></div>
+        </div>
+      </div>
+    </section>
 
-<section id="shop"><div class="wrap"><h2 style="margin-bottom:50px">Shop by category</h2><div class="cats" id="cats"></div></div></section>
+    <section id="shop">
+      <div class="wrap">
+        <h2 style="margin-bottom:50px">Shop by category</h2>
+        <div class="cats" id="cats"></div>
+      </div>
+    </section>
 
-<section id="services"><div class="wrap svc"><div><h2>Services</h2><p class="note">Proposed service list. Confirm the actual offerings before launch; each entry is editable in the SERVICES array.</p></div><div id="sv"></div></div></section>
+    <section id="services">
+      <div class="wrap svc">
+        <div>
+          <h2>Services</h2>
+          <p class="note">Proposed service list. Confirm the actual offerings before launch; each entry is editable in
+            the SERVICES array.</p>
+        </div>
+        <div id="sv"></div>
+      </div>
+    </section>
 
-<section class="finder" id="finder"><div class="wrap"><h2>Find your tires</h2>
-<p style="max-width:44ch;color:#b8bcc0">Choose your vehicle to see the sample size it uses. Demo data only, so confirm fitment with us before ordering.</p>
-<form id="ff" novalidate><label>Year<select id="fy"></select></label><label>Make<select id="fm"></select></label><label>Model<select id="fo" disabled></select></label><label>Tire size<select id="fs"></select></label><button class="btn fill" type="submit">Show tires</button></form>
-<div class="err" id="fe" role="alert"></div><div id="res" aria-live="polite"></div></div></section>
+    <section class="finder" id="finder">
+      <div class="wrap">
+        <h2>Find your tires</h2>
+        <p style="max-width:44ch;color:#b8bcc0">Choose your vehicle to see the sample size it uses. Demo data only, so
+          confirm fitment with us before ordering.</p>
+        <form id="ff" novalidate><label>Year<select id="fy"></select></label><label>Make<select
+              id="fm"></select></label><label>Model<select id="fo" disabled></select></label><label>Tire size<select
+              id="fs"></select></label><button class="btn fill" type="submit">Show tires</button></form>
+        <div class="err" id="fe" role="alert"></div>
+        <div id="res" aria-live="polite"></div>
+      </div>
+    </section>
 
-<section id="about"><div class="wrap why"><h2>Why Juniors</h2><div>
-<p>A local shop that talks through what your vehicle actually needs before you buy.</p>
-<p>Tires and the work to fit them, handled in one place.</p>
-<p class="note">Placeholder copy. Replace with verified business details, years in operation and brands carried.</p></div></div></section>
+    <section id="about">
+      <div class="wrap why">
+        <h2>Why Juniors</h2>
+        <div>
+          <p>A local shop that talks through what your vehicle actually needs before you buy.</p>
+          <p>Tires and the work to fit them, handled in one place.</p>
+          <p class="note">Placeholder copy. Replace with verified business details, years in operation and brands
+            carried.</p>
+        </div>
+      </div>
+    </section>
 
-<section id="contact" class="contact"><div class="wrap"><h2>Visit or call</h2><dl>
-<dt>Address</dt><dd><span class="ph" id="b-address">[Street address, City, State ZIP]</span></dd>
-<dt>Phone</dt><dd><span class="ph" id="b-phone">[Phone number]</span></dd>
-<dt>Hours</dt><dd><span class="ph" id="b-hours">[Opening hours]</span></dd>
-<dt>Email</dt><dd><span class="ph" id="b-email">[Email address]</span></dd></dl>
-<form id="qf" class="qf" novalidate><h3 style="font-size:40px;margin:56px 0 18px">Place an order or inquiry</h3><div class="fg"><label>Name<input id="qn" autocomplete="name"></label><label>Phone<input id="qp" type="tel" autocomplete="tel"></label></div><div class="fg" style="margin-top:12px"><label>Tire<select id="qt"></select></label><label>Size<input id="qz" placeholder="e.g. 265/70R16"></label><label>Quantity<input id="qq" type="number" min="1" value="4"></label></div><label style="margin-top:12px">Notes<textarea id="qm" rows="3" placeholder="Vehicle, service or anything else"></textarea></label><button class="btn fill" style="margin-top:16px">Send order</button><p id="qs" role="status" class="note"></p></form></div></section>
-</main>
-<footer><div class="wrap"><div class="foot"><div><div class="mark">JUNIORS AUTOMOTIVE &amp; TIRE</div><p style="color:#9aa0a6;max-width:30ch">Tires and service. Business details to be confirmed.</p></div>
-<div><h4>Navigate</h4><a href="#showroom">Shop Tires</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#admin">Staff Login</a></div>
-<div><h4>Services</h4><a href="#services">Installation</a><a href="#services">Balancing</a><a href="#services">Flat repair</a></div>
-<div><h4>Legal</h4><button class="l" data-legal="Privacy policy">Privacy policy</button><button class="l" data-legal="Terms of use">Terms of use</button></div></div>
-<div class="word" aria-hidden="true">JUNIORS</div></div></footer>
-<div id="admin" hidden></div><dialog id="dg"><h3 id="dt" style="font-size:36px"></h3><p>This page is a placeholder. Add your published policy text here.</p><button class="btn" onclick="dg.close()">Close</button></dialog>
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <h2>Visit or call</h2>
+        <dl>
+          <dt>Address</dt>
+          <dd><span class="ph" id="b-address">[Street address, City, State ZIP]</span></dd>
+          <dt>Phone</dt>
+          <dd><span class="ph" id="b-phone">[Phone number]</span></dd>
+          <dt>Hours</dt>
+          <dd><span class="ph" id="b-hours">[Opening hours]</span></dd>
+          <dt>Email</dt>
+          <dd><span class="ph" id="b-email">[Email address]</span></dd>
+        </dl>
+        <form id="qf" class="qf" novalidate>
+          <h3 style="font-size:40px;margin:56px 0 18px">Place an order or inquiry</h3>
+          <div class="fg"><label>Name<input id="qn" autocomplete="name"></label><label>Phone<input id="qp" type="tel"
+                autocomplete="tel"></label></div>
+          <div class="fg" style="margin-top:12px"><label>Tire<select id="qt"></select></label><label>Size<input id="qz"
+                placeholder="e.g. 265/70R16"></label><label>Quantity<input id="qq" type="number" min="1"
+                value="4"></label></div><label style="margin-top:12px">Notes<textarea id="qm" rows="3"
+              placeholder="Vehicle, service or anything else"></textarea></label><button class="btn fill"
+            style="margin-top:16px">Send order</button>
+          <p id="qs" role="status" class="note"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <div class="mark">JUNIORS AUTOMOTIVE &amp; TIRE</div>
+          <p style="color:#9aa0a6;max-width:30ch">Tires and service. Business details to be confirmed.</p>
+        </div>
+        <div>
+          <h4>Navigate</h4><a href="#showroom">Shop Tires</a><a href="#services">Services</a><a
+            href="#about">About</a><a href="#contact">Contact</a><a href="#admin"></a>
+        </div>
+        <div>
+          <h4>Services</h4><a href="#services">Installation</a><a href="#services">Balancing</a><a href="#services">Flat
+            repair</a>
+        </div>
+        <div>
+          <h4>Legal</h4><button class="l" data-legal="Privacy policy">Privacy policy</button><button class="l"
+            data-legal="Terms of use">Terms of use</button>
+        </div>
+      </div>
+      <div class="word" aria-hidden="true">JUNIORS</div>
+    </div>
+  </footer>
+  <div id="admin" hidden></div>
+  <dialog id="dg">
+    <h3 id="dt" style="font-size:36px"></h3>
+    <p>This page is a placeholder. Add your published policy text here.</p><button class="btn"
+      onclick="dg.close()">Close</button>
+  </dialog>
 
-<script>
-const $=s=>document.querySelector(s),reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-/* ---- Editable data ---- */
-let TIRES=[
-{n:"Meridian Touring GT",c:"Touring",k:"s",sz:["205/55R16","215/55R17"],sp:[["Season","Three-season"],["Use","Daily commuting"],["Ride","Quiet, comfort focused"],["Speed rating","H (sample)"]]},
-{n:"Atlas All-Season",c:"All-Season",k:"v",sz:["215/55R16","225/60R17","225/65R17"],sp:[["Season","Year-round"],["Use","Family sedans, crossovers"],["Tread","Directional"],["Speed rating","T (sample)"]]},
-{n:"Apex Performance",c:"Performance",k:"v",sz:["235/60R18","225/45R17"],sp:[["Season","Summer / mild"],["Use","Sport handling"],["Tread","Wide contact patch"],["Speed rating","W (sample)"]]},
-{n:"Ridge All-Terrain",c:"All-Terrain",k:"b",sz:["265/70R16","265/65R18"],sp:[["Season","Year-round"],["Use","Gravel, trail, towing"],["Tread","Aggressive blocks"],["Load range","E (sample)"]]},
-{n:"Haul Truck & SUV",c:"Truck and SUV",k:"b",sz:["265/65R18","265/70R16","235/60R18"],sp:[["Season","Year-round"],["Use","Pickups, large SUVs"],["Tread","Highway rib / block mix"],["Load range","XL (sample)"]]}];
-TIRES=[
-{n:'Non Directional',c:'All-Terrain',k:'b',img:'/img/tyre1.webp',sz:['265/70R16','265/65R18'],sp:[['Tread','Deep lug, non-directional'],['Use','Off-road and work sites'],['Season','Year-round'],['Spec data','Sample, to be confirmed']]},
-{n:'Load Star',c:'Truck and SUV',k:'b',img:'/img/tyre2.webp',sz:['265/65R18','265/70R16'],sp:[['Tread','Heavy-duty angled blocks'],['Use','Loaded trucks, rough roads'],['Season','Year-round'],['Spec data','Sample, to be confirmed']]},
-{n:'Power Jet Commercial',c:'Commercial',k:'s',img:'/img/tyre3.webp',sz:['225/60R17','235/60R18'],sp:[['Tread','Zig-zag rib'],['Use','Vans and delivery fleets'],['Season','Year-round'],['Spec data','Sample, to be confirmed']]},
-{n:'Traction Rib',c:'Highway',k:'s',img:'/img/tyre4.webp',sz:['265/70R16'],sp:[['Tread','Straight rib, shoulder grooves'],['Use','Highway and long haul'],['Season','Year-round'],['Spec data','Sample, to be confirmed']]},
-{n:'VG Vano Plus',c:'All-Season',k:'v',img:'/img/tyre5.webp',sz:['215/55R16','215/55R17','225/65R17','225/60R17'],sp:[['Tread','Rib and lug blend'],['Use','Vans and light trucks'],['Season','Year-round'],['Spec data','Sample, to be confirmed']]}];
-const CATS=[["All-Terrain","Deep lugs for gravel, mud and trails",0],["Truck and SUV","Load capacity for heavy vehicles",1],["Commercial","Light commercial and delivery use",2],["Highway","Straight ribs for steady highway miles",3],["All-Season","Year-round grip for vans and light trucks",4]];
-const SERVICES=[["Tire installation","Mounting new tires on your wheels and checking pressure before you leave."],["Tire balancing","Weights set so the wheel spins true and the steering stays smooth."],["Tire rotation","Moving tires between positions to even out wear."],["Flat tire repair","Inspection of the puncture and a repair or replacement recommendation."],["Wheel alignment","Setting angles back to specification to protect tires and handling."]];
-const VEH={Toyota:{Corolla:"215/55R16",Camry:"215/55R17",RAV4:"225/65R17",Tacoma:"265/70R16"},Honda:{Civic:"215/55R16",["CR-V"]:"235/60R18"},Ford:{Escape:"225/60R17","F-150":"265/65R18"}};
-/* ---- Tyre renderer (procedural SVG) ---- */
-let uid=0;function tyre(k){const id=++uid;let t='';const n=k==='b'?34:k==='s'?60:48;
-for(let i=0;i<n;i++){const a=i*360/n;t+=`<g transform="rotate(${a})">`+
-(k==='b'?`<path d="M-6.5-99h13l2 14h-17z M-8-85h16l-2 6h-12z" fill="#262729"/>`:
-k==='v'?`<path d="M0-98l8 6v6l-8-5l-8 5v-6z" fill="#262729" transform="scale(1,1)"/><path d="M-9-99l9 7l9-7v5l-9 8l-9-8z" fill="#2c2d30"/>`:
-`<rect x="-1.6" y="-98" width="3.2" height="13" fill="#262729"/>`)+`</g>`}
-const rib=k==='s'?`<circle r="92" fill="none" stroke="#2c2d30" stroke-width="2"/><circle r="88" fill="none" stroke="#08090a" stroke-width="1"/>`:'';
-let sp='';for(let i=0;i<5;i++)sp+=`<path transform="rotate(${i*72})" d="M-6 -14L-9 -50 0 -54 9 -50 6 -14z" fill="url(#m${id})"/><circle cx="0" cy="-30" r="1.8" fill="#222"/>`;
-let sw='';for(let i=0;i<72;i++)sw+=`<line x1="0" y1="-84" x2="0" y2="-${i%6?81:78}" stroke="#2a2b2e" stroke-width=".6" transform="rotate(${i*5})"/>`;
-return `<svg viewBox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <script>
+    const $ = s => document.querySelector(s), reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    /* ---- Editable data ---- */
+    let TIRES = [
+      { n: "Meridian Touring GT", c: "Touring", k: "s", sz: ["205/55R16", "215/55R17"], sp: [["Season", "Three-season"], ["Use", "Daily commuting"], ["Ride", "Quiet, comfort focused"], ["Speed rating", "H (sample)"]] },
+      { n: "Atlas All-Season", c: "All-Season", k: "v", sz: ["215/55R16", "225/60R17", "225/65R17"], sp: [["Season", "Year-round"], ["Use", "Family sedans, crossovers"], ["Tread", "Directional"], ["Speed rating", "T (sample)"]] },
+      { n: "Apex Performance", c: "Performance", k: "v", sz: ["235/60R18", "225/45R17"], sp: [["Season", "Summer / mild"], ["Use", "Sport handling"], ["Tread", "Wide contact patch"], ["Speed rating", "W (sample)"]] },
+      { n: "Ridge All-Terrain", c: "All-Terrain", k: "b", sz: ["265/70R16", "265/65R18"], sp: [["Season", "Year-round"], ["Use", "Gravel, trail, towing"], ["Tread", "Aggressive blocks"], ["Load range", "E (sample)"]] },
+      { n: "Haul Truck & SUV", c: "Truck and SUV", k: "b", sz: ["265/65R18", "265/70R16", "235/60R18"], sp: [["Season", "Year-round"], ["Use", "Pickups, large SUVs"], ["Tread", "Highway rib / block mix"], ["Load range", "XL (sample)"]] }];
+    TIRES = [
+      { n: 'Non Directional', c: 'All-Terrain', k: 'b', img: '/img/tyre1.webp', sz: ['265/70R16', '265/65R18'], sp: [['Tread', 'Deep lug, non-directional'], ['Use', 'Off-road and work sites'], ['Season', 'Year-round'], ['Spec data', 'Sample, to be confirmed']] },
+      { n: 'Load Star', c: 'Truck and SUV', k: 'b', img: '/img/tyre2.webp', sz: ['265/65R18', '265/70R16'], sp: [['Tread', 'Heavy-duty angled blocks'], ['Use', 'Loaded trucks, rough roads'], ['Season', 'Year-round'], ['Spec data', 'Sample, to be confirmed']] },
+      { n: 'Power Jet Commercial', c: 'Commercial', k: 's', img: '/img/tyre3.webp', sz: ['225/60R17', '235/60R18'], sp: [['Tread', 'Zig-zag rib'], ['Use', 'Vans and delivery fleets'], ['Season', 'Year-round'], ['Spec data', 'Sample, to be confirmed']] },
+      { n: 'Traction Rib', c: 'Highway', k: 's', img: '/img/tyre4.webp', sz: ['265/70R16'], sp: [['Tread', 'Straight rib, shoulder grooves'], ['Use', 'Highway and long haul'], ['Season', 'Year-round'], ['Spec data', 'Sample, to be confirmed']] },
+      { n: 'VG Vano Plus', c: 'All-Season', k: 'v', img: '/img/tyre5.webp', sz: ['215/55R16', '215/55R17', '225/65R17', '225/60R17'], sp: [['Tread', 'Rib and lug blend'], ['Use', 'Vans and light trucks'], ['Season', 'Year-round'], ['Spec data', 'Sample, to be confirmed']] }];
+    const CATS = [["All-Terrain", "Deep lugs for gravel, mud and trails", 0], ["Truck and SUV", "Load capacity for heavy vehicles", 1], ["Commercial", "Light commercial and delivery use", 2], ["Highway", "Straight ribs for steady highway miles", 3], ["All-Season", "Year-round grip for vans and light trucks", 4]];
+    const SERVICES = [["Tire installation", "Mounting new tires on your wheels and checking pressure before you leave."], ["Tire balancing", "Weights set so the wheel spins true and the steering stays smooth."], ["Tire rotation", "Moving tires between positions to even out wear."], ["Flat tire repair", "Inspection of the puncture and a repair or replacement recommendation."], ["Wheel alignment", "Setting angles back to specification to protect tires and handling."]];
+    const VEH = { Toyota: { Corolla: "215/55R16", Camry: "215/55R17", RAV4: "225/65R17", Tacoma: "265/70R16" }, Honda: { Civic: "215/55R16", ["CR-V"]: "235/60R18" }, Ford: { Escape: "225/60R17", "F-150": "265/65R18" } };
+    /* ---- Tyre renderer (procedural SVG) ---- */
+    let uid = 0; function tyre(k) {
+      const id = ++uid; let t = ''; const n = k === 'b' ? 34 : k === 's' ? 60 : 48;
+      for (let i = 0; i < n; i++) {
+        const a = i * 360 / n; t += `<g transform="rotate(${a})">` +
+          (k === 'b' ? `<path d="M-6.5-99h13l2 14h-17z M-8-85h16l-2 6h-12z" fill="#262729"/>` :
+            k === 'v' ? `<path d="M0-98l8 6v6l-8-5l-8 5v-6z" fill="#262729" transform="scale(1,1)"/><path d="M-9-99l9 7l9-7v5l-9 8l-9-8z" fill="#2c2d30"/>` :
+              `<rect x="-1.6" y="-98" width="3.2" height="13" fill="#262729"/>`) + `</g>`
+      }
+      const rib = k === 's' ? `<circle r="92" fill="none" stroke="#2c2d30" stroke-width="2"/><circle r="88" fill="none" stroke="#08090a" stroke-width="1"/>` : '';
+      let sp = ''; for (let i = 0; i < 5; i++)sp += `<path transform="rotate(${i * 72})" d="M-6 -14L-9 -50 0 -54 9 -50 6 -14z" fill="url(#m${id})"/><circle cx="0" cy="-30" r="1.8" fill="#222"/>`;
+      let sw = ''; for (let i = 0; i < 72; i++)sw += `<line x1="0" y1="-84" x2="0" y2="-${i % 6 ? 81 : 78}" stroke="#2a2b2e" stroke-width=".6" transform="rotate(${i * 5})"/>`;
+      return `<svg viewBox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
 <radialGradient id="s${id}" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#34363a"/><stop offset=".6" stop-color="#1c1d1f"/><stop offset="1" stop-color="#0d0e0f"/></radialGradient>
 <linearGradient id="m${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6e8ea"/><stop offset=".5" stop-color="#8b9096"/><stop offset="1" stop-color="#d5d8db"/></linearGradient>
 <radialGradient id="r${id}" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#cfd2d5"/><stop offset="1" stop-color="#5d6268"/></radialGradient></defs>
 <circle r="100" fill="#050506"/>${t}${rib}<circle r="85" fill="url(#s${id})"/>${sw}<circle r="76" fill="none" stroke="#0a0a0b" stroke-width="1.5"/>
-<circle r="58" fill="url(#r${id})"/><circle r="52" fill="#16171a"/>${sp}<circle r="12" fill="url(#m${id})"/><circle r="4" fill="#202225"/></svg>`}
-/* ---- Loader ---- */
-const lt=$('#lt'),lb=$('#lb'),ld=$('#loader');lt.innerHTML=tyre('b');const ls=lt.firstChild;
-let ready=false,p=0,ang=0,v=0,fin=false;const start=performance.now();
-const ok=()=>{ready=true};addEventListener('load',ok);addEventListener('error',ok,true);setTimeout(ok,5000);
-(document.fonts?document.fonts.ready:Promise.resolve()).then(()=>{if(document.readyState==='complete')ok()}).catch(ok);
-function end(){ld.classList.add('done');document.body.classList.add('go');setTimeout(()=>ld.remove(),1000)}
-if(reduce){lb.style.width='100%';setTimeout(end,150)}else{(function f(t){
- const tgt=ready&&t-start>700?1:.88;p+=(tgt-p)*.06;v+=((fin?0:ready&&p>.97?5:16)-v)*.05;ang+=v;ls.style.transform=`rotate(${ang}deg)`;lb.style.width=p*100+'%';
- if(ready&&p>.985&&!fin){fin=true;lb.style.width='100%'}
- if(fin&&v<.4){end();return}requestAnimationFrame(f)})(start)}
-/* ---- Hero scroll: tyre accelerates away, smoke trail ---- */
-const pin=$('#pin'),hero=pin.firstElementChild,hi=$('#hi'),hb=$('#hb'),cv=$('#smoke'),cx=cv.getContext('2d'),PS=[],dk=matchMedia('(prefers-color-scheme:dark)').matches;let lq=0,raf=0,dpr=1;
-function fit(){dpr=Math.min(2,devicePixelRatio||1);cv.width=hero.clientWidth*dpr;cv.height=hero.clientHeight*dpr}
-function tick(){raf=0;const r=pin.getBoundingClientRect(),p=reduce?0:Math.min(1,Math.max(0,-r.top/Math.max(1,pin.offsetHeight-innerHeight))),q=Math.min(1,p/.85),d=q-lq;lq=q;
- hi.style.transform=`rotate(${q*q*3600}deg)`;
- if(d>0&&q<1&&!reduce){const hr=hero.getBoundingClientRect(),b=hb.getBoundingClientRect(),n=Math.min(14,Math.ceil(d*260));
-  for(let i=0;i<n&&PS.length<260;i++)PS.push({x:b.left-hr.left+b.width*(.2+Math.random()*.6),y:b.top-hr.top+b.height*(.9+Math.random()*.08),r:16+Math.random()*22,vx:-(.4+Math.random()*(1+q*3)),vy:-(.15+Math.random()*.6),a:.22+Math.random()*.16})}
- cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,cv.width,cv.height);
- for(let i=PS.length-1;i>=0;i--){const s=PS[i];s.x+=s.vx;s.y+=s.vy;s.r+=.8;s.a-=.005;if(s.a<=0){PS.splice(i,1);continue}
-const isDk=()=>document.documentElement.getAttribute('data-theme')==='dark'||(!document.documentElement.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
-  const g=cx.createRadialGradient(s.x,s.y,0,s.x,s.y,s.r),c=isDk()?'176,178,184':'100,116,139';g.addColorStop(0,`rgba(${c},${s.a})`);g.addColorStop(1,`rgba(${c},0)`);cx.fillStyle=g;cx.beginPath();cx.arc(s.x,s.y,s.r,0,7);cx.fill()}
- if(PS.length)raf=requestAnimationFrame(tick)}
-const kick=()=>{if(!raf)raf=requestAnimationFrame(tick)};
-addEventListener('scroll',kick,{passive:true});addEventListener('resize',()=>{fit();kick()});fit();kick();
-/* ---- Nav ---- */
-const hd=document.querySelector('header');let ly=0;addEventListener('scroll',()=>{const y=scrollY;hd.classList.toggle('sc',y>10);hd.classList.toggle('hide',y>ly&&y>300&&!$('#lk').classList.contains('open'));ly=y},{passive:true});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll('.links a:not(.btn)').forEach(a=>a.toggleAttribute('aria-current',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});['showroom','services','about','contact'].forEach(i=>io.observe(document.getElementById(i)));
-const bg=$('#burger'),lk=$('#lk');bg.onclick=()=>{const o=lk.classList.toggle('open');bg.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''};
-lk.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{lk.classList.remove('open');bg.setAttribute('aria-expanded',false);document.body.style.overflow=''}));
-/* ---- Carousel ---- */
-const track=$('#track'),stage=$('#stage');let cur=1,dx=0,sx=null,moved=false,items=[];
-const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const art=t=>t.img?`<img src="${esc(t.img)}" alt="" draggable="false" style="width:100%;height:auto;display:block;pointer-events:none">`:tyre(t.k);
-function build(){if(!TIRES.length)return;track.innerHTML=TIRES.map((t,i)=>`<button class="item" data-i="${i}" aria-label="${esc(t.n)}">${art(t)}</button>`).join('');items=[...track.children];items.forEach(e=>e.onclick=()=>{if(!moved)go(+e.dataset.i)});cur=Math.min(cur,TIRES.length-1);fillTires();render(true)}
-function render(anim){const it=items[cur],c=stage.clientWidth/2,x=c-(it.offsetLeft+it.offsetWidth/2);track.style.transform=`translateX(${x+dx}px)`;
- items.forEach((e,i)=>e.classList.toggle('on',i===cur));if(!anim)return;const t=TIRES[cur];
- $('#i1').innerHTML=`<p class="cat">${esc(t.c)}</p><h3>${esc(t.n)}</h3><div class="ctl"><button class="btn fill" id="fd">Find This Tire</button><button class="btn arrow" id="pv" aria-label="Previous tire">&larr;</button><button class="btn arrow" id="nx" aria-label="Next tire">&rarr;</button><span class="cnt">${cur+1} / ${TIRES.length}</span></div>`;
- $('#i2').innerHTML=`<dl class="specs"><dt>Sizes</dt><dd>${esc(t.sz.join(", "))}</dd>${t.sp.map(s=>`<dt>${esc(s[0])}</dt><dd>${esc(s[1])}</dd>`).join("")}<dt>Price</dt><dd>${esc(t.price||"Available on request")}</dd></dl>`;
- $('#pv').onclick=()=>go(cur-1);$('#nx').onclick=()=>go(cur+1);$('#fd').onclick=()=>{pre(t.n,t.sz[0]);location.hash='contact'};
- document.querySelectorAll('.info .t').forEach(e=>{e.style.animation='none';e.offsetWidth;e.style.animation=''})}
-function go(i){cur=Math.max(0,Math.min(TIRES.length-1,i));dx=0;render(true)}
+<circle r="58" fill="url(#r${id})"/><circle r="52" fill="#16171a"/>${sp}<circle r="12" fill="url(#m${id})"/><circle r="4" fill="#202225"/></svg>`
+    }
+    /* ---- Loader ---- */
+    const lt = $('#lt'), lb = $('#lb'), ld = $('#loader'); lt.innerHTML = tyre('b'); const ls = lt.firstChild;
+    let ready = false, p = 0, ang = 0, v = 0, fin = false; const start = performance.now();
+    const ok = () => { ready = true }; addEventListener('load', ok); addEventListener('error', ok, true); setTimeout(ok, 5000);
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { if (document.readyState === 'complete') ok() }).catch(ok);
+    function end() { ld.classList.add('done'); document.body.classList.add('go'); setTimeout(() => ld.remove(), 1000) }
+    if (reduce) { lb.style.width = '100%'; setTimeout(end, 150) } else {
+      (function f(t) {
+        const tgt = ready && t - start > 700 ? 1 : .88; p += (tgt - p) * .06; v += ((fin ? 0 : ready && p > .97 ? 5 : 16) - v) * .05; ang += v; ls.style.transform = `rotate(${ang}deg)`; lb.style.width = p * 100 + '%';
+        if (ready && p > .985 && !fin) { fin = true; lb.style.width = '100%' }
+        if (fin && v < .4) { end(); return } requestAnimationFrame(f)
+      })(start)
+    }
+    /* ---- Hero scroll: tyre accelerates away, smoke trail ---- */
+    const pin = $('#pin'), hero = pin.firstElementChild, hi = $('#hi'), hb = $('#hb'), cv = $('#smoke'), cx = cv.getContext('2d'), PS = [], dk = matchMedia('(prefers-color-scheme:dark)').matches; let lq = 0, raf = 0, dpr = 1;
+    function fit() { dpr = Math.min(2, devicePixelRatio || 1); cv.width = hero.clientWidth * dpr; cv.height = hero.clientHeight * dpr }
+    function tick() {
+      raf = 0; const r = pin.getBoundingClientRect(), p = reduce ? 0 : Math.min(1, Math.max(0, -r.top / Math.max(1, pin.offsetHeight - innerHeight))), q = Math.min(1, p / .85), d = q - lq; lq = q;
+      hi.style.transform = `rotate(${q * q * 3600}deg)`;
+      if (d > 0 && q < 1 && !reduce) {
+        const hr = hero.getBoundingClientRect(), b = hb.getBoundingClientRect(), n = Math.min(14, Math.ceil(d * 260));
+        for (let i = 0; i < n && PS.length < 260; i++)PS.push({ x: b.left - hr.left + b.width * (.2 + Math.random() * .6), y: b.top - hr.top + b.height * (.9 + Math.random() * .08), r: 16 + Math.random() * 22, vx: -(.4 + Math.random() * (1 + q * 3)), vy: -(.15 + Math.random() * .6), a: .22 + Math.random() * .16 })
+      }
+      cx.setTransform(dpr, 0, 0, dpr, 0, 0); cx.clearRect(0, 0, cv.width, cv.height);
+      for (let i = PS.length - 1; i >= 0; i--) {
+        const s = PS[i]; s.x += s.vx; s.y += s.vy; s.r += .8; s.a -= .005; if (s.a <= 0) { PS.splice(i, 1); continue }
+        const isDk = () => document.documentElement.getAttribute('data-theme') === 'dark' || (!document.documentElement.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+        const g = cx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r), c = isDk() ? '176,178,184' : '100,116,139'; g.addColorStop(0, `rgba(${c},${s.a})`); g.addColorStop(1, `rgba(${c},0)`); cx.fillStyle = g; cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, 7); cx.fill()
+      }
+      if (PS.length) raf = requestAnimationFrame(tick)
+    }
+    const kick = () => { if (!raf) raf = requestAnimationFrame(tick) };
+    addEventListener('scroll', kick, { passive: true }); addEventListener('resize', () => { fit(); kick() }); fit(); kick();
+    /* ---- Nav ---- */
+    const hd = document.querySelector('header'); let ly = 0; addEventListener('scroll', () => { const y = scrollY; hd.classList.toggle('sc', y > 10); hd.classList.toggle('hide', y > ly && y > 300 && !$('#lk').classList.contains('open')); ly = y }, { passive: true });
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) document.querySelectorAll('.links a:not(.btn)').forEach(a => a.toggleAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id)) }), { rootMargin: '-45% 0px -50% 0px' });['showroom', 'services', 'about', 'contact'].forEach(i => io.observe(document.getElementById(i)));
+    const bg = $('#burger'), lk = $('#lk'); bg.onclick = () => { const o = lk.classList.toggle('open'); bg.setAttribute('aria-expanded', o); document.body.style.overflow = o ? 'hidden' : '' };
+    lk.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { lk.classList.remove('open'); bg.setAttribute('aria-expanded', false); document.body.style.overflow = '' }));
+    /* ---- Carousel ---- */
+    const track = $('#track'), stage = $('#stage'); let cur = 1, dx = 0, sx = null, moved = false, items = [];
+    const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const art = t => t.img ? `<img src="${esc(t.img)}" alt="" draggable="false" style="width:100%;height:auto;display:block;pointer-events:none">` : tyre(t.k);
+    function build() { if (!TIRES.length) return; track.innerHTML = TIRES.map((t, i) => `<button class="item" data-i="${i}" aria-label="${esc(t.n)}">${art(t)}</button>`).join(''); items = [...track.children]; items.forEach(e => e.onclick = () => { if (!moved) go(+e.dataset.i) }); cur = Math.min(cur, TIRES.length - 1); fillTires(); render(true) }
+    function render(anim) {
+      const it = items[cur], c = stage.clientWidth / 2, x = c - (it.offsetLeft + it.offsetWidth / 2); track.style.transform = `translateX(${x + dx}px)`;
+      items.forEach((e, i) => e.classList.toggle('on', i === cur)); if (!anim) return; const t = TIRES[cur];
+      $('#i1').innerHTML = `<p class="cat">${esc(t.c)}</p><h3>${esc(t.n)}</h3><div class="ctl"><button class="btn fill" id="fd">Find This Tire</button><button class="btn arrow" id="pv" aria-label="Previous tire">&larr;</button><button class="btn arrow" id="nx" aria-label="Next tire">&rarr;</button><span class="cnt">${cur + 1} / ${TIRES.length}</span></div>`;
+      $('#i2').innerHTML = `<dl class="specs"><dt>Sizes</dt><dd>${esc(t.sz.join(", "))}</dd>${t.sp.map(s => `<dt>${esc(s[0])}</dt><dd>${esc(s[1])}</dd>`).join("")}<dt>Price</dt><dd>${esc(t.price || "Available on request")}</dd></dl>`;
+      $('#pv').onclick = () => go(cur - 1); $('#nx').onclick = () => go(cur + 1); $('#fd').onclick = () => { pre(t.n, t.sz[0]); location.hash = 'contact' };
+      document.querySelectorAll('.info .t').forEach(e => { e.style.animation = 'none'; e.offsetWidth; e.style.animation = '' })
+    }
+    function go(i) { cur = Math.max(0, Math.min(TIRES.length - 1, i)); dx = 0; render(true) }
 
-stage.addEventListener('pointerdown',e=>{sx=e.clientX;moved=false});
-addEventListener('pointermove',e=>{if(sx===null)return;dx=e.clientX-sx;if(Math.abs(dx)>6)moved=true;track.style.transition='none';render()});
-addEventListener('pointerup',()=>{if(sx===null)return;const d=dx;sx=null;track.style.transition='';go(d<-50?cur+1:d>50?cur-1:cur);setTimeout(()=>moved=false,0)});
-stage.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
-addEventListener('resize',()=>render());build();setTimeout(()=>render(),400);
-/* ---- Categories & services ---- */
-$('#cats').innerHTML=CATS.map(c=>`<a href="#showroom" data-t="${c[2]}">${c[0]}<small>${c[1]}</small></a>`).join('');
-document.querySelectorAll('#cats a').forEach(a=>a.onclick=()=>go(+a.dataset.t));
-$('#sv').innerHTML=SERVICES.map((s,i)=>`<details${i?'':' open'}><summary>${s[0]}</summary><p>${s[1]}</p></details>`).join('');
-/* ---- Finder ---- */
-const fy=$('#fy'),fm=$('#fm'),fo=$('#fo'),fs=$('#fs'),fe=$('#fe'),res=$('#res');
-const opt=(a,ph)=>`<option value="">${ph}</option>`+a.map(x=>`<option>${x}</option>`).join('');
-const sizes=[...new Set(TIRES.flatMap(t=>t.sz))].sort();
-fy.innerHTML=opt(Array.from({length:12},(_,i)=>2025-i),'Select year');fm.innerHTML=opt(Object.keys(VEH),'Select make');fo.innerHTML=opt([],'Select make first');fs.innerHTML=opt(sizes,'Or pick a size');
-fm.onchange=()=>{fo.disabled=!fm.value;fo.innerHTML=opt(fm.value?Object.keys(VEH[fm.value]):[],fm.value?'Select model':'Select make first')};
-fo.onchange=()=>{if(fo.value)fs.value=VEH[fm.value][fo.value]||''};
-$('#ff').onsubmit=e=>{e.preventDefault();[fy,fm,fo,fs].forEach(s=>s.removeAttribute('aria-invalid'));res.innerHTML='';
- if(!fs.value){const m=[fy,fm,fo].filter(s=>!s.value&&!s.disabled);if(!m.length)m.push(fm);m.forEach(s=>s.setAttribute('aria-invalid',true));fe.textContent='Choose year, make and model, or pick a tire size directly.';m[0].focus();return}
- fe.textContent='';const r=TIRES.filter(t=>t.sz.includes(fs.value));
- res.innerHTML=`<p style="color:#b8bcc0">Size ${fs.value}: ${r.length?r.length+' sample match'+(r.length>1?'es':''):'no sample products listed'}.</p>`+
- (r.length?r.map(t=>`<div class="row"><div><b>${esc(t.n)}</b><br>${esc(t.c)}</div><a class="btn" href="#contact" data-pre="${esc(t.n)}|${esc(fs.value)}">Order this tire</a></div>`).join(''):`<div class="row"><span>Contact us and we will check this size.</span><a class="btn" href="#contact">Contact</a></div>`)};
-/* ---- Backend client and admin (talks to server.js) ---- */
-const adm=$('#admin');let CAN=false,BIZ={},WORK=[],tab='p';
-const msg=t=>{const m=$('#am');if(m)m.textContent=t};
-const API_BASE = window.API_URL || '';
-const api=async(p,o={})=>{const b=o.body,raw=b instanceof Blob,url=(p.startsWith('http')?'':API_BASE)+'/api'+p,r=await fetch(url,{method:o.method||'GET',credentials:'include',headers:{'X-Requested-With':'fetch',...(b&&!raw?{'Content-Type':'application/json'}:{}),...(o.headers||{})},body:b?(raw?b:JSON.stringify(b)):undefined});let d=null;try{d=await r.json()}catch(e){}if(!r.ok)throw new Error((d&&d.error)||('Request failed ('+r.status+')'));return d};
-function refreshFinder(){const v=fs.value;fs.innerHTML=opt([...new Set(TIRES.flatMap(t=>t.sz))].sort(),'Or pick a size');fs.value=v}
-function applyBiz(){['address','phone','hours','email'].forEach(k=>{const e=$('#b-'+k),v=String(BIZ[k]||'').trim();if(v){e.textContent=v;e.className=''}})}
-api('/site').then(d=>{if(d.products&&Array.isArray(d.products.items)&&d.products.items.length){TIRES=d.products.items;build();refreshFinder()}if(d.business){BIZ=d.business;applyBiz()}}).catch(()=>{});
-const closeA=()=>{if(location.hash==='#admin')history.pushState({},'',location.pathname+location.search);else history.pushState({},'','/');route()};
-async function route(){const on=location.pathname.replace(/\/+$/,'')==='/admin'||location.hash==='#admin';adm.hidden=!on;document.body.style.overflow=on?'hidden':'';if(!on)return;
- try{CAN=(await api('/me')).admin}catch(e){CAN=false}
- if(!CAN){login();return}
- try{const d=await api('/site');WORK=JSON.parse(JSON.stringify(d.products&&d.products.items&&d.products.items.length?d.products.items:TIRES));if(d.business)BIZ=d.business}catch(e){WORK=JSON.parse(JSON.stringify(TIRES))}
- aRender()}
-addEventListener('popstate',route);addEventListener('hashchange',route);
-function login(){adm.innerHTML='<div style="max-width:420px;margin:12vh auto 0"><div class="mark" style="margin-bottom:28px">JUNIORS AUTOMOTIVE &amp; TIRE</div><h2 style="font-size:56px;margin-bottom:16px">Staff sign in</h2><form id="lf" style="display:grid;gap:14px"><label>Password<input id="lp" type="password" autocomplete="current-password" required></label><div class="ctl2" style="margin:0"><button class="btn fill">Sign in</button><button type="button" class="btn" id="ax">Back to site</button></div></form><p class="note" id="am" role="status"></p></div>';
- $('#ax').onclick=closeA;$('#lp').focus();$('#lf').onsubmit=async e=>{e.preventDefault();try{await api('/login',{method:'POST',body:{password:$('#lp').value}});route()}catch(x){msg(x.message)}}}
-function aRender(){adm.innerHTML=`<div class="ah"><h2 style="font-size:48px">Admin</h2><div class="tabs">${[['p','Tires'],['b','Business'],['l','Orders']].map(([k,l])=>`<button class="btn${tab===k?' fill':''}" data-t="${k}">${l}</button>`).join('')}</div><span class="tabs"><button class="btn" id="so">Sign out</button><button class="btn" id="ax">Close</button></span></div><div id="ab"></div><p class="note" id="am" role="status"></p>`;
- adm.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{if(tab==='p')collect();tab=b.dataset.t;aRender()});$('#ax').onclick=closeA;$('#so').onclick=async()=>{await api('/logout',{method:'POST'}).catch(()=>{});route()};({p:aTires,b:aBiz,l:aLeads})[tab]()}
-function collect(){adm.querySelectorAll('.pr').forEach(r=>{const t=WORK[+r.dataset.i],g=f=>r.querySelector(`[data-f=${f}]`).value;t.n=g('n');t.c=g('c');t.k=g('k');t.price=g('price').trim();t.sz=g('sz').split(',').map(s=>s.trim()).filter(Boolean);t.sp=g('sp').split('\n').map(l=>l.split(':')).filter(a=>a[0].trim()).map(a=>[a[0].trim(),a.slice(1).join(':').trim()])})}
-function aTires(){$('#ab').innerHTML=WORK.map((t,i)=>`<div class="pr" data-i="${i}"><div class="th">${art(t)}</div><div><div class="fg"><label>Name<input data-f="n" value="${esc(t.n)}"></label><label>Category<input data-f="c" value="${esc(t.c)}"></label><label>Tread style (if no photo)<select data-f="k">${[['s','Touring ribs'],['v','Directional'],['b','Block, off-road']].map(([v,l])=>`<option value="${v}"${t.k===v?' selected':''}>${l}</option>`).join('')}</select></label><label>Price (optional)<input data-f="price" value="${esc(t.price||'')}"></label></div><div class="fg" style="margin-top:12px"><label>Sizes, comma separated<input data-f="sz" value="${esc((t.sz||[]).join(', '))}"></label><label>Specs, one per line as Label: Value<textarea data-f="sp" rows="4">${esc((t.sp||[]).map(s=>s.join(': ')).join('\n'))}</textarea></label></div><div class="ctl2"><label class="btn up">Upload photo<input type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden data-f="file"></label>${t.img?'<button class="btn" data-a="noimg">Remove photo</button>':''}<button class="btn" data-a="del">Delete tire</button></div></div></div>`).join('')+'<div class="ctl2"><button class="btn" id="add">Add tire</button><button class="btn fill" id="sv2">Save changes</button></div>';
- adm.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{collect();const i=+b.closest('.pr').dataset.i;if(b.dataset.a==='del'){if(WORK.length<2){msg('Keep at least one tire.');return}WORK.splice(i,1)}else delete WORK[i].img;aTires()});
- adm.querySelectorAll('[data-f=file]').forEach(f=>f.onchange=async()=>{const i=+f.closest('.pr').dataset.i,fl=f.files[0];if(!fl)return;collect();msg('Uploading...');try{const r=await api('/upload',{method:'POST',body:fl,headers:{'Content-Type':fl.type}});WORK[i].img=r.url;aTires();msg('Photo added. Save changes to publish it.')}catch(e){msg('Upload failed: '+e.message)}});
- $('#add').onclick=()=>{collect();WORK.push({n:'New tire',c:'All-Season',k:'s',sz:[],sp:[]});aTires()};
- $('#sv2').onclick=async()=>{collect();if(WORK.some(t=>!t.n.trim()||!t.sz.length)){msg('Every tire needs a name and at least one size.');return}try{await api('/products',{method:'PUT',body:{items:WORK}});TIRES=JSON.parse(JSON.stringify(WORK));build();refreshFinder();msg('Saved. The site is updated.')}catch(e){msg('Could not save: '+e.message)}}}
-function aBiz(){$('#ab').innerHTML='<div class="fg" style="margin-top:20px">'+[['address','Address'],['phone','Phone'],['hours','Opening hours'],['email','Email']].map(([k,l])=>`<label>${l}<input data-b="${k}" value="${esc(BIZ[k]||'')}"></label>`).join('')+'</div><div class="ctl2"><button class="btn fill" id="sb">Save details</button></div>';
- $('#sb').onclick=async()=>{const o={};adm.querySelectorAll('[data-b]').forEach(i=>o[i.dataset.b]=i.value.trim());try{await api('/business',{method:'PUT',body:o});BIZ=o;applyBiz();msg('Saved.')}catch(e){msg('Could not save: '+e.message)}}}
-async function aLeads(){const b=$('#ab');b.innerHTML='<p class="note">Loading...</p>';try{const {orders}=await api('/orders');
- b.innerHTML=orders.length?orders.map(x=>`<div class="row2"><div><b>${esc(x.name)}</b> ${esc(x.phone)}<br>${x.tire?`<b>${esc(x.tire)}</b> ${esc(x.size||'')} x ${esc(x.qty||1)}<br>`:''}${esc(x.msg||'')}<br><span class="note">${new Date(x.at).toLocaleString()}</span></div><button class="btn" data-id="${esc(x.id)}">Delete</button></div>`).join(''):'<p>No orders yet.</p>';
- b.querySelectorAll('[data-id]').forEach(btn=>btn.onclick=async()=>{try{await api('/orders/'+btn.dataset.id,{method:'DELETE'});aLeads()}catch(e){msg(e.message)}})}catch(e){b.innerHTML='<p>Could not load orders.</p>'}}
-$('#qf').onsubmit=async e=>{e.preventDefault();const n=$('#qn').value.trim(),p=$('#qp').value.trim(),m=$('#qm').value.trim(),tt=$('#qt').value,sz=$('#qz').value.trim(),qy=Math.max(1,+$('#qq').value||1),st=$('#qs');
- if(!n||!p||(!tt&&!m)){st.textContent='Add your name, phone number, and a tire or message.';return}
- try{await api('/orders',{method:'POST',body:{name:n,phone:p,msg:m,tire:tt,size:sz,qty:qy}});st.textContent='Thanks. We received your order request.';e.target.reset()}catch(x){st.textContent=x.message||'Could not send. Please call us.'}};
-route();
-function fillTires(){const q=$('#qt'),v=q.value;q.innerHTML='<option value="">Select a tire</option>'+TIRES.map(t=>`<option>${esc(t.n)}</option>`).join('');q.value=v}
-function pre(n,s){$('#qt').value=n;$('#qz').value=s||''}
-res.addEventListener('click',e=>{const a=e.target.closest('[data-pre]');if(a){const [x,y]=a.dataset.pre.split('|');pre(x,y)}});
-/* ---- Theme Toggle ---- */
-const thmBtn=$('#theme-btn');
-function applyTheme(t){
-  document.documentElement.setAttribute('data-theme',t);
-  try{localStorage.setItem('jt_theme',t)}catch(e){}
-}
-if(thmBtn){
-  thmBtn.onclick=()=>{
-    const cur=document.documentElement.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
-    applyTheme(cur==='dark'?'light':'dark');
-    kick();
-  };
-}
-try{
-  const st=localStorage.getItem('jt_theme');
-  if(st)document.documentElement.setAttribute('data-theme',st);
-}catch(e){}
-/* ---- Legal ---- */
-const dg=$('#dg');document.querySelectorAll('[data-legal]').forEach(b=>b.onclick=()=>{$('#dt').textContent=b.dataset.legal;dg.showModal()});
-</script></body></html>
+    stage.addEventListener('pointerdown', e => { sx = e.clientX; moved = false });
+    addEventListener('pointermove', e => { if (sx === null) return; dx = e.clientX - sx; if (Math.abs(dx) > 6) moved = true; track.style.transition = 'none'; render() });
+    addEventListener('pointerup', () => { if (sx === null) return; const d = dx; sx = null; track.style.transition = ''; go(d < -50 ? cur + 1 : d > 50 ? cur - 1 : cur); setTimeout(() => moved = false, 0) });
+    stage.addEventListener('keydown', e => { if (e.key === 'ArrowRight') go(cur + 1); if (e.key === 'ArrowLeft') go(cur - 1) });
+    addEventListener('resize', () => render()); build(); setTimeout(() => render(), 400);
+    /* ---- Categories & services ---- */
+    $('#cats').innerHTML = CATS.map(c => `<a href="#showroom" data-t="${c[2]}">${c[0]}<small>${c[1]}</small></a>`).join('');
+    document.querySelectorAll('#cats a').forEach(a => a.onclick = () => go(+a.dataset.t));
+    $('#sv').innerHTML = SERVICES.map((s, i) => `<details${i ? '' : ' open'}><summary>${s[0]}</summary><p>${s[1]}</p></details>`).join('');
+    /* ---- Finder ---- */
+    const fy = $('#fy'), fm = $('#fm'), fo = $('#fo'), fs = $('#fs'), fe = $('#fe'), res = $('#res');
+    const opt = (a, ph) => `<option value="">${ph}</option>` + a.map(x => `<option>${x}</option>`).join('');
+    const sizes = [...new Set(TIRES.flatMap(t => t.sz))].sort();
+    fy.innerHTML = opt(Array.from({ length: 12 }, (_, i) => 2025 - i), 'Select year'); fm.innerHTML = opt(Object.keys(VEH), 'Select make'); fo.innerHTML = opt([], 'Select make first'); fs.innerHTML = opt(sizes, 'Or pick a size');
+    fm.onchange = () => { fo.disabled = !fm.value; fo.innerHTML = opt(fm.value ? Object.keys(VEH[fm.value]) : [], fm.value ? 'Select model' : 'Select make first') };
+    fo.onchange = () => { if (fo.value) fs.value = VEH[fm.value][fo.value] || '' };
+    $('#ff').onsubmit = e => {
+      e.preventDefault();[fy, fm, fo, fs].forEach(s => s.removeAttribute('aria-invalid')); res.innerHTML = '';
+      if (!fs.value) { const m = [fy, fm, fo].filter(s => !s.value && !s.disabled); if (!m.length) m.push(fm); m.forEach(s => s.setAttribute('aria-invalid', true)); fe.textContent = 'Choose year, make and model, or pick a tire size directly.'; m[0].focus(); return }
+      fe.textContent = ''; const r = TIRES.filter(t => t.sz.includes(fs.value));
+      res.innerHTML = `<p style="color:#b8bcc0">Size ${fs.value}: ${r.length ? r.length + ' sample match' + (r.length > 1 ? 'es' : '') : 'no sample products listed'}.</p>` +
+        (r.length ? r.map(t => `<div class="row"><div><b>${esc(t.n)}</b><br>${esc(t.c)}</div><a class="btn" href="#contact" data-pre="${esc(t.n)}|${esc(fs.value)}">Order this tire</a></div>`).join('') : `<div class="row"><span>Contact us and we will check this size.</span><a class="btn" href="#contact">Contact</a></div>`)
+    };
+    /* ---- Backend client and admin (talks to server.js) ---- */
+    const adm = $('#admin'); let CAN = false, BIZ = {}, WORK = [], tab = 'p';
+    const msg = t => { const m = $('#am'); if (m) m.textContent = t };
+    const API_BASE = window.API_URL || '';
+    const api = async (p, o = {}) => { const b = o.body, raw = b instanceof Blob, url = (p.startsWith('http') ? '' : API_BASE) + '/api' + p, r = await fetch(url, { method: o.method || 'GET', credentials: 'include', headers: { 'X-Requested-With': 'fetch', ...(b && !raw ? { 'Content-Type': 'application/json' } : {}), ...(o.headers || {}) }, body: b ? (raw ? b : JSON.stringify(b)) : undefined }); let d = null; try { d = await r.json() } catch (e) { } if (!r.ok) throw new Error((d && d.error) || ('Request failed (' + r.status + ')')); return d };
+    function refreshFinder() { const v = fs.value; fs.innerHTML = opt([...new Set(TIRES.flatMap(t => t.sz))].sort(), 'Or pick a size'); fs.value = v }
+    function applyBiz() { ['address', 'phone', 'hours', 'email'].forEach(k => { const e = $('#b-' + k), v = String(BIZ[k] || '').trim(); if (v) { e.textContent = v; e.className = '' } }) }
+    api('/site').then(d => { if (d.products && Array.isArray(d.products.items) && d.products.items.length) { TIRES = d.products.items; build(); refreshFinder() } if (d.business) { BIZ = d.business; applyBiz() } }).catch(() => { });
+    const closeA = () => { if (location.hash === '#admin') history.pushState({}, '', location.pathname + location.search); else history.pushState({}, '', '/'); route() };
+    async function route() {
+      const on = location.pathname.replace(/\/+$/, '') === '/admin' || location.hash === '#admin'; adm.hidden = !on; document.body.style.overflow = on ? 'hidden' : ''; if (!on) return;
+      try { CAN = (await api('/me')).admin } catch (e) { CAN = false }
+      if (!CAN) { login(); return }
+      try { const d = await api('/site'); WORK = JSON.parse(JSON.stringify(d.products && d.products.items && d.products.items.length ? d.products.items : TIRES)); if (d.business) BIZ = d.business } catch (e) { WORK = JSON.parse(JSON.stringify(TIRES)) }
+      aRender()
+    }
+    addEventListener('popstate', route); addEventListener('hashchange', route);
+    function login() {
+      adm.innerHTML = '<div style="max-width:420px;margin:12vh auto 0"><div class="mark" style="margin-bottom:28px">JUNIORS AUTOMOTIVE &amp; TIRE</div><h2 style="font-size:56px;margin-bottom:16px">Staff sign in</h2><form id="lf" style="display:grid;gap:14px"><label>Password<input id="lp" type="password" autocomplete="current-password" required></label><div class="ctl2" style="margin:0"><button class="btn fill">Sign in</button><button type="button" class="btn" id="ax">Back to site</button></div></form><p class="note" id="am" role="status"></p></div>';
+      $('#ax').onclick = closeA; $('#lp').focus(); $('#lf').onsubmit = async e => { e.preventDefault(); try { await api('/login', { method: 'POST', body: { password: $('#lp').value } }); route() } catch (x) { msg(x.message) } }
+    }
+    function aRender() {
+      adm.innerHTML = `<div class="ah"><h2 style="font-size:48px">Admin</h2><div class="tabs">${[['p', 'Tires'], ['b', 'Business'], ['l', 'Orders']].map(([k, l]) => `<button class="btn${tab === k ? ' fill' : ''}" data-t="${k}">${l}</button>`).join('')}</div><span class="tabs"><button class="btn" id="so">Sign out</button><button class="btn" id="ax">Close</button></span></div><div id="ab"></div><p class="note" id="am" role="status"></p>`;
+      adm.querySelectorAll('[data-t]').forEach(b => b.onclick = () => { if (tab === 'p') collect(); tab = b.dataset.t; aRender() }); $('#ax').onclick = closeA; $('#so').onclick = async () => { await api('/logout', { method: 'POST' }).catch(() => { }); route() }; ({ p: aTires, b: aBiz, l: aLeads })[tab]()
+    }
+    function collect() { adm.querySelectorAll('.pr').forEach(r => { const t = WORK[+r.dataset.i], g = f => r.querySelector(`[data-f=${f}]`).value; t.n = g('n'); t.c = g('c'); t.k = g('k'); t.price = g('price').trim(); t.sz = g('sz').split(',').map(s => s.trim()).filter(Boolean); t.sp = g('sp').split('\n').map(l => l.split(':')).filter(a => a[0].trim()).map(a => [a[0].trim(), a.slice(1).join(':').trim()]) }) }
+    function aTires() {
+      $('#ab').innerHTML = WORK.map((t, i) => `<div class="pr" data-i="${i}"><div class="th">${art(t)}</div><div><div class="fg"><label>Name<input data-f="n" value="${esc(t.n)}"></label><label>Category<input data-f="c" value="${esc(t.c)}"></label><label>Tread style (if no photo)<select data-f="k">${[['s', 'Touring ribs'], ['v', 'Directional'], ['b', 'Block, off-road']].map(([v, l]) => `<option value="${v}"${t.k === v ? ' selected' : ''}>${l}</option>`).join('')}</select></label><label>Price (optional)<input data-f="price" value="${esc(t.price || '')}"></label></div><div class="fg" style="margin-top:12px"><label>Sizes, comma separated<input data-f="sz" value="${esc((t.sz || []).join(', '))}"></label><label>Specs, one per line as Label: Value<textarea data-f="sp" rows="4">${esc((t.sp || []).map(s => s.join(': ')).join('\n'))}</textarea></label></div><div class="ctl2"><label class="btn up">Upload photo<input type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden data-f="file"></label>${t.img ? '<button class="btn" data-a="noimg">Remove photo</button>' : ''}<button class="btn" data-a="del">Delete tire</button></div></div></div>`).join('') + '<div class="ctl2"><button class="btn" id="add">Add tire</button><button class="btn fill" id="sv2">Save changes</button></div>';
+      adm.querySelectorAll('[data-a]').forEach(b => b.onclick = () => { collect(); const i = +b.closest('.pr').dataset.i; if (b.dataset.a === 'del') { if (WORK.length < 2) { msg('Keep at least one tire.'); return } WORK.splice(i, 1) } else delete WORK[i].img; aTires() });
+      adm.querySelectorAll('[data-f=file]').forEach(f => f.onchange = async () => { const i = +f.closest('.pr').dataset.i, fl = f.files[0]; if (!fl) return; collect(); msg('Uploading...'); try { const r = await api('/upload', { method: 'POST', body: fl, headers: { 'Content-Type': fl.type } }); WORK[i].img = r.url; aTires(); msg('Photo added. Save changes to publish it.') } catch (e) { msg('Upload failed: ' + e.message) } });
+      $('#add').onclick = () => { collect(); WORK.push({ n: 'New tire', c: 'All-Season', k: 's', sz: [], sp: [] }); aTires() };
+      $('#sv2').onclick = async () => { collect(); if (WORK.some(t => !t.n.trim() || !t.sz.length)) { msg('Every tire needs a name and at least one size.'); return } try { await api('/products', { method: 'PUT', body: { items: WORK } }); TIRES = JSON.parse(JSON.stringify(WORK)); build(); refreshFinder(); msg('Saved. The site is updated.') } catch (e) { msg('Could not save: ' + e.message) } }
+    }
+    function aBiz() {
+      $('#ab').innerHTML = '<div class="fg" style="margin-top:20px">' + [['address', 'Address'], ['phone', 'Phone'], ['hours', 'Opening hours'], ['email', 'Email']].map(([k, l]) => `<label>${l}<input data-b="${k}" value="${esc(BIZ[k] || '')}"></label>`).join('') + '</div><div class="ctl2"><button class="btn fill" id="sb">Save details</button></div>';
+      $('#sb').onclick = async () => { const o = {}; adm.querySelectorAll('[data-b]').forEach(i => o[i.dataset.b] = i.value.trim()); try { await api('/business', { method: 'PUT', body: o }); BIZ = o; applyBiz(); msg('Saved.') } catch (e) { msg('Could not save: ' + e.message) } }
+    }
+    async function aLeads() {
+      const b = $('#ab'); b.innerHTML = '<p class="note">Loading...</p>'; try {
+        const { orders } = await api('/orders');
+        b.innerHTML = orders.length ? orders.map(x => `<div class="row2"><div><b>${esc(x.name)}</b> ${esc(x.phone)}<br>${x.tire ? `<b>${esc(x.tire)}</b> ${esc(x.size || '')} x ${esc(x.qty || 1)}<br>` : ''}${esc(x.msg || '')}<br><span class="note">${new Date(x.at).toLocaleString()}</span></div><button class="btn" data-id="${esc(x.id)}">Delete</button></div>`).join('') : '<p>No orders yet.</p>';
+        b.querySelectorAll('[data-id]').forEach(btn => btn.onclick = async () => { try { await api('/orders/' + btn.dataset.id, { method: 'DELETE' }); aLeads() } catch (e) { msg(e.message) } })
+      } catch (e) { b.innerHTML = '<p>Could not load orders.</p>' }
+    }
+    $('#qf').onsubmit = async e => {
+      e.preventDefault(); const n = $('#qn').value.trim(), p = $('#qp').value.trim(), m = $('#qm').value.trim(), tt = $('#qt').value, sz = $('#qz').value.trim(), qy = Math.max(1, +$('#qq').value || 1), st = $('#qs');
+      if (!n || !p || (!tt && !m)) { st.textContent = 'Add your name, phone number, and a tire or message.'; return }
+      try { await api('/orders', { method: 'POST', body: { name: n, phone: p, msg: m, tire: tt, size: sz, qty: qy } }); st.textContent = 'Thanks. We received your order request.'; e.target.reset() } catch (x) { st.textContent = x.message || 'Could not send. Please call us.' }
+    };
+    route();
+    function fillTires() { const q = $('#qt'), v = q.value; q.innerHTML = '<option value="">Select a tire</option>' + TIRES.map(t => `<option>${esc(t.n)}</option>`).join(''); q.value = v }
+    function pre(n, s) { $('#qt').value = n; $('#qz').value = s || '' }
+    res.addEventListener('click', e => { const a = e.target.closest('[data-pre]'); if (a) { const [x, y] = a.dataset.pre.split('|'); pre(x, y) } });
+    /* ---- Theme Toggle ---- */
+    const thmBtn = $('#theme-btn');
+    function applyTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      try { localStorage.setItem('jt_theme', t) } catch (e) { }
+    }
+    if (thmBtn) {
+      thmBtn.onclick = () => {
+        const cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+        applyTheme(cur === 'dark' ? 'light' : 'dark');
+        kick();
+      };
+    }
+    try {
+      const st = localStorage.getItem('jt_theme');
+      if (st) document.documentElement.setAttribute('data-theme', st);
+    } catch (e) { }
+    /* ---- Legal ---- */
+    const dg = $('#dg'); document.querySelectorAll('[data-legal]').forEach(b => b.onclick = () => { $('#dt').textContent = b.dataset.legal; dg.showModal() });
+  </script>
+</body>
+
+</html>
