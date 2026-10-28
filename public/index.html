@@ -130,7 +130,7 @@ html{-webkit-text-size-adjust:100%}@media(max-width:700px){.cats a{font-size:cla
 <form id="qf" class="qf" novalidate><h3 style="font-size:40px;margin:56px 0 18px">Place an order or inquiry</h3><div class="fg"><label>Name<input id="qn" autocomplete="name"></label><label>Phone<input id="qp" type="tel" autocomplete="tel"></label></div><div class="fg" style="margin-top:12px"><label>Tire<select id="qt"></select></label><label>Size<input id="qz" placeholder="e.g. 265/70R16"></label><label>Quantity<input id="qq" type="number" min="1" value="4"></label></div><label style="margin-top:12px">Notes<textarea id="qm" rows="3" placeholder="Vehicle, service or anything else"></textarea></label><button class="btn fill" style="margin-top:16px">Send order</button><p id="qs" role="status" class="note"></p></form></div></section>
 </main>
 <footer><div class="wrap"><div class="foot"><div><div class="mark">JUNIORS AUTOMOTIVE &amp; TIRE</div><p style="color:#9aa0a6;max-width:30ch">Tires and service. Business details to be confirmed.</p></div>
-<div><h4>Navigate</h4><a href="#showroom">Shop Tires</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+<div><h4>Navigate</h4><a href="#showroom">Shop Tires</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#admin">Staff Login</a></div>
 <div><h4>Services</h4><a href="#services">Installation</a><a href="#services">Balancing</a><a href="#services">Flat repair</a></div>
 <div><h4>Legal</h4><button class="l" data-legal="Privacy policy">Privacy policy</button><button class="l" data-legal="Terms of use">Terms of use</button></div></div>
 <div class="word" aria-hidden="true">JUNIORS</div></div></footer>
@@ -238,13 +238,13 @@ const api=async(p,o={})=>{const b=o.body,raw=b instanceof Blob,r=await fetch('/a
 function refreshFinder(){const v=fs.value;fs.innerHTML=opt([...new Set(TIRES.flatMap(t=>t.sz))].sort(),'Or pick a size');fs.value=v}
 function applyBiz(){['address','phone','hours','email'].forEach(k=>{const e=$('#b-'+k),v=String(BIZ[k]||'').trim();if(v){e.textContent=v;e.className=''}})}
 api('/site').then(d=>{if(d.products&&Array.isArray(d.products.items)&&d.products.items.length){TIRES=d.products.items;build();refreshFinder()}if(d.business){BIZ=d.business;applyBiz()}}).catch(()=>{});
-const closeA=()=>{history.pushState({},'','/');route()};
-async function route(){const on=location.pathname.replace(/\/+$/,'')==='/admin';adm.hidden=!on;document.body.style.overflow=on?'hidden':'';if(!on)return;
+const closeA=()=>{if(location.hash==='#admin')history.pushState({},'',location.pathname+location.search);else history.pushState({},'','/');route()};
+async function route(){const on=location.pathname.replace(/\/+$/,'')==='/admin'||location.hash==='#admin';adm.hidden=!on;document.body.style.overflow=on?'hidden':'';if(!on)return;
  try{CAN=(await api('/me')).admin}catch(e){CAN=false}
  if(!CAN){login();return}
  try{const d=await api('/site');WORK=JSON.parse(JSON.stringify(d.products&&d.products.items&&d.products.items.length?d.products.items:TIRES));if(d.business)BIZ=d.business}catch(e){WORK=JSON.parse(JSON.stringify(TIRES))}
  aRender()}
-addEventListener('popstate',route);
+addEventListener('popstate',route);addEventListener('hashchange',route);
 function login(){adm.innerHTML='<div style="max-width:420px;margin:12vh auto 0"><div class="mark" style="margin-bottom:28px">JUNIORS AUTOMOTIVE &amp; TIRE</div><h2 style="font-size:56px;margin-bottom:16px">Staff sign in</h2><form id="lf" style="display:grid;gap:14px"><label>Password<input id="lp" type="password" autocomplete="current-password" required></label><div class="ctl2" style="margin:0"><button class="btn fill">Sign in</button><button type="button" class="btn" id="ax">Back to site</button></div></form><p class="note" id="am" role="status"></p></div>';
  $('#ax').onclick=closeA;$('#lp').focus();$('#lf').onsubmit=async e=>{e.preventDefault();try{await api('/login',{method:'POST',body:{password:$('#lp').value}});route()}catch(x){msg(x.message)}}}
 function aRender(){adm.innerHTML=`<div class="ah"><h2 style="font-size:48px">Admin</h2><div class="tabs">${[['p','Tires'],['b','Business'],['l','Orders']].map(([k,l])=>`<button class="btn${tab===k?' fill':''}" data-t="${k}">${l}</button>`).join('')}</div><span class="tabs"><button class="btn" id="so">Sign out</button><button class="btn" id="ax">Close</button></span></div><div id="ab"></div><p class="note" id="am" role="status"></p>`;
