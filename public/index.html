@@ -234,7 +234,8 @@ $('#ff').onsubmit=e=>{e.preventDefault();[fy,fm,fo,fs].forEach(s=>s.removeAttrib
 /* ---- Backend client and admin (talks to server.js) ---- */
 const adm=$('#admin');let CAN=false,BIZ={},WORK=[],tab='p';
 const msg=t=>{const m=$('#am');if(m)m.textContent=t};
-const api=async(p,o={})=>{const b=o.body,raw=b instanceof Blob,r=await fetch('/api'+p,{method:o.method||'GET',credentials:'same-origin',headers:{'X-Requested-With':'fetch',...(b&&!raw?{'Content-Type':'application/json'}:{}),...(o.headers||{})},body:b?(raw?b:JSON.stringify(b)):undefined});let d=null;try{d=await r.json()}catch(e){}if(!r.ok)throw new Error((d&&d.error)||'Request failed');return d};
+const API_BASE = window.API_URL || '';
+const api=async(p,o={})=>{const b=o.body,raw=b instanceof Blob,url=(p.startsWith('http')?'':API_BASE)+'/api'+p,r=await fetch(url,{method:o.method||'GET',credentials:'include',headers:{'X-Requested-With':'fetch',...(b&&!raw?{'Content-Type':'application/json'}:{}),...(o.headers||{})},body:b?(raw?b:JSON.stringify(b)):undefined});let d=null;try{d=await r.json()}catch(e){}if(!r.ok)throw new Error((d&&d.error)||('Request failed ('+r.status+')'));return d};
 function refreshFinder(){const v=fs.value;fs.innerHTML=opt([...new Set(TIRES.flatMap(t=>t.sz))].sort(),'Or pick a size');fs.value=v}
 function applyBiz(){['address','phone','hours','email'].forEach(k=>{const e=$('#b-'+k),v=String(BIZ[k]||'').trim();if(v){e.textContent=v;e.className=''}})}
 api('/site').then(d=>{if(d.products&&Array.isArray(d.products.items)&&d.products.items.length){TIRES=d.products.items;build();refreshFinder()}if(d.business){BIZ=d.business;applyBiz()}}).catch(()=>{});
